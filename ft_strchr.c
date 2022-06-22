@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 15:55:20 by mzaraa            #+#    #+#             */
-/*   Updated: 2021/11/13 13:58:43 by mzaraa           ###   ########.fr       */
+/*   Created: 2021/10/20 09:46:07 by mzaraa            #+#    #+#             */
+/*   Updated: 2021/11/01 17:34:02 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-Libère la mémoire de l’élément passé en argument
-en utilisant la fonction del puis avec free. La
-mémoire de next ne doit pas être free.
-*/
-void	ft_lstdelone(t_tokens *lst)
+char	*ft_strchr(char *s, int c)
 {
-	if(lst)
-		free (lst);
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	if (s[i] == (char)c)
+		return ((char *)&s[i]);
+	return (NULL);
 }

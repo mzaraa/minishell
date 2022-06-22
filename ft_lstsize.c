@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 15:55:20 by mzaraa            #+#    #+#             */
-/*   Updated: 2021/11/13 13:58:43 by mzaraa           ###   ########.fr       */
+/*   Created: 2021/11/03 13:41:14 by mzaraa            #+#    #+#             */
+/*   Updated: 2021/11/04 15:49:00 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*
-Libère la mémoire de l’élément passé en argument
-en utilisant la fonction del puis avec free. La
-mémoire de next ne doit pas être free.
-*/
-void	ft_lstdelone(t_tokens *lst)
+int	ft_lstsize(t_tokens *lst)
 {
-	if(lst)
-		free (lst);
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

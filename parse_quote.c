@@ -35,7 +35,6 @@ static int d_quote(char* line_read)
 
 int valid_quote(char* line_read)
 {
-	puts("fdsfvhdso");
 	if (!s_quote(line_read))
 	{
 		printf("Erreur de quotes\n");

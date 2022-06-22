@@ -4,6 +4,17 @@ SRCS	= main.c \
 			get_next_line_utils.c \
 			ft_split.c \
 			parse_quote.c \
+			lexer.c \
+			ft_lstadd_back.c \
+			ft_lstadd_front.c \
+			ft_lstlast.c \
+			ft_lstnew.c \
+			ft_lstsize.c \
+			ft_lstclear.c \
+			ft_lstdelone.c \
+			ft_strtrim.c \
+			ft_substr.c \
+
 
 OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
 
