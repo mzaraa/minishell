@@ -22,6 +22,22 @@
 
 # define METACHAR " \t\n|&<>"
 
+enum	e_type
+{
+	pipe,
+	redirection,
+	word,
+};
+
+typedef struct s_tree
+{
+	char*			token;
+	int				type;
+	void			(*function)(t_data*);
+	struct s_tree*	right;
+	struct s_tree*	left;
+}	t_tree;
+
 typedef struct s_tokens
 {
     char*				token;
@@ -35,6 +51,7 @@ typedef struct s_data
     char**		env;
     t_tokens**	ll_token;
 	char*		cmd;
+	t_tree**	ast_tree;
 }   t_data;
 
 /* utils */
@@ -48,6 +65,7 @@ void		ft_lstadd_back(t_tokens **alst, t_tokens *new);
 int			ft_lstsize(t_tokens *lst);
 void		ft_lstclear(t_tokens **lst);
 void		ft_lstdelone(t_tokens *lst);
+char*		ft_strdup(const char *s1);
 
 /* check quote*/
 int     valid_quote(char* line_read);

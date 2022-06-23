@@ -39,15 +39,18 @@ char *rl_gets(t_data *data)
 
 int main(int ac, char **av, char **env)
 {
-	t_data	data;
-	t_tokens *tokens;
+	t_data		data;
+	t_tokens*	tokens;
+	t_tree*		node;
 
 	tokens = NULL;
+	node = NULL;
 	data.ac = ac;
 	data.av = av;
 	data.env = env;
 	data.ll_token = &tokens;
 	data.cmd = NULL;
+	data.ast_tree = &node;
 	while(rl_gets(&data))
 		;
 	printf("Bye \n");

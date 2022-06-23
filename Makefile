@@ -14,6 +14,8 @@ SRCS	= main.c \
 			ft_lstdelone.c \
 			ft_strtrim.c \
 			ft_substr.c \
+			ft_tree_new_node.c \
+			parser.c \
 
 
 OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
