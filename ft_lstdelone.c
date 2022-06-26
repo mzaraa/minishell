@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 15:55:20 by mzaraa            #+#    #+#             */
-/*   Updated: 2021/11/13 13:58:43 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/06/26 16:03:54 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ mémoire de next ne doit pas être free.
 */
 void	ft_lstdelone(t_tokens *lst)
 {
-	if(lst)
+	if (lst)
 		free (lst);
 }

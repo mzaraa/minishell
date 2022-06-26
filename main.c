@@ -1,8 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/26 15:53:32 by mzaraa            #+#    #+#             */
+/*   Updated: 2022/06/26 15:53:33 by mzaraa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void print_list(t_data *data)
+void	print_ast(t_tree *tree)
 {
-	t_tokens* temp;
+	printf("%s\n", tree->token);
+	if (tree->left != NULL)
+	{	
+		printf("left of %s: ", tree->token);
+		print_ast(tree->left);
+	}	
+	if (tree->right != NULL)
+	{	
+		printf("right of %s: ", tree->token);
+		print_ast(tree->right);
+	}
+}
+
+void	print_list(t_data *data)
+{
+	t_tokens	*temp;
 
 	temp = *(data->ll_token);
 	while (temp)
@@ -12,36 +39,37 @@ void print_list(t_data *data)
 	}
 }
 
-char *rl_gets(t_data *data)
+char	*rl_gets(t_data *data)
 {
-	static char *line_read = (char *)NULL;
+	static char	*line_read = (char *) NULL;
 
 	if (line_read)
 	{
 		free (line_read);
 		ft_lstclear(data->ll_token);
-		line_read = (char *)NULL;
+		line_read = (char *) NULL;
 		data->cmd = NULL;
 	}
-	line_read = readline ("\033[33mminishell\033[0m> ");
+	line_read = readline ("minishell » ");
 	if (line_read && *line_read)
 	{
 		add_history (line_read);
 		if (!valid_quote(line_read))
-			return(line_read);
+			return (line_read);
 		data->cmd = line_read;
 		lexer(data);
 		parser(data);
+		print_ast((*data->ast_tree));
 		// print_list(data);
 	}
 	return (line_read);
 }
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
 	t_data		data;
-	t_tokens*	tokens;
-	t_tree*		node;
+	t_tokens	*tokens;
+	t_tree		*node;
 
 	tokens = NULL;
 	node = NULL;
@@ -51,7 +79,7 @@ int main(int ac, char **av, char **env)
 	data.ll_token = &tokens;
 	data.cmd = NULL;
 	data.ast_tree = &node;
-	while(rl_gets(&data))
+	while (rl_gets(&data))
 		;
 	printf("Bye \n");
 }

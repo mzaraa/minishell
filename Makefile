@@ -15,6 +15,7 @@ SRCS	= main.c \
 			ft_strtrim.c \
 			ft_substr.c \
 			ft_tree_new_node.c \
+			build_tree.c \
 			parser.c \
 
 

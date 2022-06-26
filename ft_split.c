@@ -1,29 +1,44 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/06/26 15:59:57 by mzaraa            #+#    #+#             */
+/*   Updated: 2022/06/26 16:03:17 by mzaraa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <stdio.h>
 
-int ischarset(char c, char *charset)
+int	ischarset(char c, char *charset)
 {
 	while (*charset)
 	{
 		if (c == *charset)
-			return 1;
+			return (1);
 		++charset;
 	}
-	return 0;
+	return (0);
 }
 
-int ft_strlen_split(char *s, char *charset)
+int	ft_strlen_split(char *s, char *charset)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (*s && !ischarset(*s++, charset))
 		++i;
-	return i;
+	return (i);
 }
 
-int nb_word(char *s, char *charset)
+int	nb_word(char *s, char *charset)
 {
-	int count = 0;
+	int	count;
+
+	count = 0;
 	while (*s)
 	{
 		if (!ischarset(*s, charset))
@@ -35,29 +50,32 @@ int nb_word(char *s, char *charset)
 		else
 			++s;
 	}
-	return count;
+	return (count);
 }
 
-char* ft_cpy(char *s, char *charset)
+char	*ft_cpy(char *s, char *charset)
 {
-	char* str = malloc(sizeof(char) * (ft_strlen_split(s, charset) + 1));
-	char* strcpy = str;
+	char	*str;
+	char	*strcpy;
+
+	str = malloc(sizeof(char) * (ft_strlen_split(s, charset) + 1));
+	strcpy = str;
 	while (*s && !ischarset(*s, charset))
 		*str++ = *s++;
 	*str = '\0';
-	return strcpy;
+	return (strcpy);
 }
 
-char** ft_split(char *s, char *charset)
+char	**ft_split(char *s, char *charset)
 {
-	char** str;
-	char** strcpy;
+	char	**str;
+	char	**strcpy;
 
 	if (!s || !charset)
-		return NULL;
+		return (NULL);
 	str = malloc(sizeof(char *) * (nb_word(s, charset) + 1));
 	if (!str)
-		return NULL;
+		return (NULL);
 	strcpy = str;
 	while (*s)
 	{
@@ -71,5 +89,5 @@ char** ft_split(char *s, char *charset)
 			++s;
 	}
 	*str = 0;
-	return strcpy;
+	return (strcpy);
 }

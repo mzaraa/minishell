@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:45:30 by mzaraa            #+#    #+#             */
-/*   Updated: 2021/11/13 13:17:18 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/06/26 15:59:33 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strdup(const char *s1)
 	return (str);
 }
 
-char*	ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	j;
 	size_t	strlen;
