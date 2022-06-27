@@ -1,22 +1,23 @@
 # SOURCES
 SRCS	= main.c \
-			get_next_line.c \
-			get_next_line_utils.c \
-			ft_split.c \
-			parse_quote.c \
-			lexer.c \
-			ft_lstadd_back.c \
-			ft_lstadd_front.c \
-			ft_lstlast.c \
-			ft_lstnew.c \
-			ft_lstsize.c \
-			ft_lstclear.c \
-			ft_lstdelone.c \
-			ft_strtrim.c \
-			ft_substr.c \
-			ft_tree_new_node.c \
-			build_tree.c \
-			parser.c \
+			mini_libft/get_next_line.c \
+			mini_libft/get_next_line_utils.c \
+			mini_libft/ft_split.c \
+			parser_lexer/parse_quote.c \
+			parser_lexer/lexer.c \
+			linked_list/ft_lstadd_back.c \
+			linked_list/ft_lstadd_front.c \
+			linked_list/ft_lstlast.c \
+			linked_list/ft_lstnew.c \
+			linked_list/ft_lstsize.c \
+			linked_list/ft_lstclear.c \
+			linked_list/ft_lstdelone.c \
+			mini_libft/ft_strtrim.c \
+			mini_libft/ft_substr.c \
+			ast_tree/ft_tree_new_node.c \
+			ast_tree/build_tree.c \
+			ast_tree/ft_tree_clear.c \
+			parser_lexer/parser.c \
 
 
 OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
@@ -42,7 +43,7 @@ BLU = \033[34m
 EOC = \033[0m
 
 bin/%.o: %.c
-	@mkdir -p bin
+	@mkdir -p bin bin/linked_list bin/ast_tree bin/mini_libft bin/parser_lexer
 	@$(CC) $(C_OPTS) -c $< -o $@
 
 all: $(NAME)

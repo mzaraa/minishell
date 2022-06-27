@@ -27,7 +27,7 @@ void	print_ast(t_tree *tree)
 	}
 }
 
-void	print_list(t_data *data)
+/* static void	print_list(t_data *data)
 {
 	t_tokens	*temp;
 
@@ -37,9 +37,9 @@ void	print_list(t_data *data)
 		printf("%s \n", temp->token);
 		temp = temp->next;
 	}
-}
+} */
 
-char	*rl_gets(t_data *data)
+static char	*rl_gets(t_data *data)
 {
 	static char	*line_read = (char *) NULL;
 
@@ -47,6 +47,7 @@ char	*rl_gets(t_data *data)
 	{
 		free (line_read);
 		ft_lstclear(data->ll_token);
+		free_tree(data->ast_tree);
 		line_read = (char *) NULL;
 		data->cmd = NULL;
 	}

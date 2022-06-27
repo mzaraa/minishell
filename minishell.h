@@ -79,6 +79,7 @@ int			ft_lstsize(t_tokens *lst);
 void		ft_lstclear(t_tokens **lst);
 void		ft_lstdelone(t_tokens *lst);
 char		*ft_strdup(const char *s1);
+void		free_tree(t_tree **tree);
 
 /* check quote*/
 int			valid_quote(char *line_read);
