@@ -6,24 +6,24 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:53:32 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/06/26 15:53:33 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/06/29 10:45:08 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	print_ast(t_tree *tree)
+void	print_tree(t_tree *tree)
 {
 	printf("%s\n", tree->token);
 	if (tree->left != NULL)
 	{	
 		printf("left of %s: ", tree->token);
-		print_ast(tree->left);
+		print_tree(tree->left);
 	}	
 	if (tree->right != NULL)
 	{	
 		printf("right of %s: ", tree->token);
-		print_ast(tree->right);
+		print_tree(tree->right);
 	}
 }
 
@@ -60,7 +60,7 @@ static char	*rl_gets(t_data *data)
 		data->cmd = line_read;
 		lexer(data);
 		parser(data);
-		print_ast((*data->ast_tree));
+		print_tree((*data->ast_tree));
 		// print_list(data);
 	}
 	return (line_read);

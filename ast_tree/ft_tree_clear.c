@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_tree_clear.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/01 13:57:11 by mzaraa            #+#    #+#             */
+/*   Updated: 2022/07/01 13:57:51 by mzaraa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	free_tree(t_tree **tree)
 {
-	if (!*tree)
-		return ;
 	t_tree	*tmp;
 
+	if (!*tree)
+		return ;
 	tmp = *tree;
-	if(tmp)
+	if (tmp)
 	{
 		free_tree(&tmp->right);
 		free_tree(&tmp->left);
