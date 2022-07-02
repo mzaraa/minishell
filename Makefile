@@ -27,6 +27,7 @@ SRCS	= main.c \
 			linked_list_env/ft_lstdelone_env.c \
 			linked_list_env/setup_env.c \
 			linked_list_env/replace_env_var.c \
+			print/print_list_and_tree.c \
 
 
 OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
@@ -52,7 +53,7 @@ BLU = \033[34m
 EOC = \033[0m
 
 bin/%.o: %.c
-	@mkdir -p bin bin/linked_list_token bin/ast_tree bin/mini_libft bin/parser_lexer bin/linked_list_env
+	@mkdir -p bin bin/linked_list_token bin/ast_tree bin/mini_libft bin/parser_lexer bin/linked_list_env bin/print
 	@$(CC) $(C_OPTS) -c $< -o $@
 
 all: $(NAME)

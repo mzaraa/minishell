@@ -12,45 +12,6 @@
 
 #include "minishell.h"
 
-void	print_tree(t_tree *tree)
-{
-	printf("%s\n", tree->token);
-	if (tree->left != NULL)
-	{	
-		printf("left of %s: ", tree->token);
-		print_tree(tree->left);
-	}	
-	if (tree->right != NULL)
-	{	
-		printf("right of %s: ", tree->token);
-		print_tree(tree->right);
-	}
-}
-
-static void	print_list_token(t_data *data)
-{
-	t_tokens	*temp;
-
-	temp = *(data->ll_token);
-	while (temp)
-	{
-		printf("%s \n", temp->token);
-		temp = temp->next;
-	}
-}
-
-static void	print_list_env(t_data *data)
-{
-	t_env	*temp;
-
-	temp = *(data->ll_env);
-	while (temp)
-	{
-		printf("\001\033[1;31m\002%s \001\033[0m\002= %s\n", temp->var, temp->value);
-		temp = temp->next;
-	}
-}
-
 static char	*rl_gets(t_data *data)
 {
 	static char	*line_read = (char *) NULL;
@@ -63,7 +24,7 @@ static char	*rl_gets(t_data *data)
 		line_read = (char *) NULL;
 		data->cmd = NULL;
 	}
-	line_read = readline ("minishell » ");
+	line_read = readline ("\033[0;32mminishell \033[0;32m» \033[0m");
 	if (line_read && *line_read)
 	{
 		add_history (line_read);
@@ -75,7 +36,7 @@ static char	*rl_gets(t_data *data)
 		parser(data);
 		// print_tree((*data->ast_tree));
 		print_list_env(data);
-		print_list_token(data);
+		// print_list_token(data);
 	}
 	return (line_read);
 }

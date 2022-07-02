@@ -1,30 +1,36 @@
 #include "../minishell.h"
 
+static void	swap(t_tokens **node, t_tokens **prev_node, char *value)
+{
+	t_tokens	*new_node;
+
+	new_node = ft_lstnew(value);
+	(*prev_node)->next = new_node;
+	new_node->next = (*node)->next;
+}
+
 void	env_var_to_value(t_data *data)
 {
-	t_tokens	*temp_token;
-	t_tokens	*prev_token;
-	t_tokens	*new_node;
+	t_tokens	*node;
+	t_tokens	*prev_node;
 	t_env		*temp_env;
 
-	temp_token = *(data->ll_token);
-	prev_token = temp_token;
+	node = *(data->ll_token);
+	prev_node = node;
 	temp_env = *(data->ll_env);
-	while (temp_token)
+	while (node)
 	{
-		if (*(temp_token->token) == '$')
+		if (*(node->token) == '$')
 			while (temp_env)
 			{
-				if (!(strcmp(temp_env->var, (temp_token->token + 1))))
+				if (!(strcmp(temp_env->var, (node->token + 1))))
 				{
-					new_node = ft_lstnew(temp_env->value);
-					prev_token->next = new_node;
-					new_node->next = temp_token->next;
+					swap(&node, &prev_node, temp_env->value);
 					break ;
 				}
 				temp_env = temp_env->next;
 			}
-		prev_token = temp_token;
-		temp_token = temp_token->next;
+		prev_node = node;
+		node = node->next;
 	}
 }
