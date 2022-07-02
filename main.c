@@ -27,7 +27,7 @@ void	print_tree(t_tree *tree)
 	}
 }
 
-/* static void	print_list(t_data *data)
+static void	print_list_token(t_data *data)
 {
 	t_tokens	*temp;
 
@@ -37,7 +37,19 @@ void	print_tree(t_tree *tree)
 		printf("%s \n", temp->token);
 		temp = temp->next;
 	}
-} */
+}
+
+static void	print_list_env(t_data *data)
+{
+	t_env	*temp;
+
+	temp = *(data->ll_env);
+	while (temp)
+	{
+		printf("\001\033[1;31m\002%s \001\033[0m\002= %s\n", temp->var, temp->value);
+		temp = temp->next;
+	}
+}
 
 static char	*rl_gets(t_data *data)
 {
@@ -59,9 +71,11 @@ static char	*rl_gets(t_data *data)
 			return (line_read);
 		data->cmd = line_read;
 		lexer(data);
+		env_var_to_value(data);
 		parser(data);
-		print_tree((*data->ast_tree));
-		// print_list(data);
+		// print_tree((*data->ast_tree));
+		print_list_env(data);
+		print_list_token(data);
 	}
 	return (line_read);
 }
@@ -71,15 +85,18 @@ int	main(int ac, char **av, char **env)
 	t_data		data;
 	t_tokens	*tokens;
 	t_tree		*node;
+	t_env		*env_list;
 
 	tokens = NULL;
 	node = NULL;
+	env_list = NULL;
+	env_list = get_env(env);
 	data.ac = ac;
 	data.av = av;
-	data.env = env;
 	data.ll_token = &tokens;
 	data.cmd = NULL;
 	data.ast_tree = &node;
+	data.ll_env = &env_list;
 	while (rl_gets(&data))
 		;
 	printf("Bye \n");

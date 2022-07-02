@@ -35,6 +35,8 @@
 # define BOLDBLUE "\001\033"
 # define RESET "\001\033[0m\002"
 
+typedef struct s_data t_data;
+
 enum	e_type
 {
 	PIPE,
@@ -48,15 +50,12 @@ typedef struct s_tokens
 	struct s_tokens	*next;
 }	t_tokens;
 
-typedef struct s_data
+typedef struct s_env
 {
-	int				ac;
-	char			**av;
-	char			**env;
-	t_tokens		**ll_token;
-	char			*cmd;
-	struct s_tree	**ast_tree;
-}	t_data;
+	char			*var;
+	char			*value;
+	struct s_env	*next;
+}	t_env;
 
 typedef struct s_tree
 {
@@ -66,6 +65,17 @@ typedef struct s_tree
 	struct s_tree	*right;
 	struct s_tree	*left;
 }	t_tree;
+
+struct s_data
+{
+	int				ac;
+	char			**av;
+	char			**env;
+	t_tokens		**ll_token;
+	char			*cmd;
+	t_tree			**ast_tree;
+	t_env			**ll_env;
+};
 
 /* utils */
 char		*ft_strtrim(char const	*s1, char const *set);
@@ -80,6 +90,18 @@ void		ft_lstclear(t_tokens **lst);
 void		ft_lstdelone(t_tokens *lst);
 char		*ft_strdup(const char *s1);
 void		free_tree(t_tree **tree);
+
+
+/* utils env */
+void	env_var_to_value(t_data *data);
+t_env	*get_env(char **env);
+t_env	*ft_lstnew_env(char *var, char *value);
+void	ft_lstadd_front_env(t_env **alst, t_env *new);
+t_env	*ft_lstlast_env(t_env *lst);
+void	ft_lstadd_back_env(t_env **alst, t_env *new);
+int		ft_lstsize_env(t_env *lst);
+void	ft_lstclear_env(t_env **lst);
+void	ft_lstdelone_env(t_env *lst);
 
 /* check quote*/
 int			valid_quote(char *line_read);

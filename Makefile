@@ -5,19 +5,28 @@ SRCS	= main.c \
 			mini_libft/ft_split.c \
 			parser_lexer/parse_quote.c \
 			parser_lexer/lexer.c \
-			linked_list/ft_lstadd_back.c \
-			linked_list/ft_lstadd_front.c \
-			linked_list/ft_lstlast.c \
-			linked_list/ft_lstnew.c \
-			linked_list/ft_lstsize.c \
-			linked_list/ft_lstclear.c \
-			linked_list/ft_lstdelone.c \
+			linked_list_token/ft_lstadd_back.c \
+			linked_list_token/ft_lstadd_front.c \
+			linked_list_token/ft_lstlast.c \
+			linked_list_token/ft_lstnew.c \
+			linked_list_token/ft_lstsize.c \
+			linked_list_token/ft_lstclear.c \
+			linked_list_token/ft_lstdelone.c \
 			mini_libft/ft_strtrim.c \
 			mini_libft/ft_substr.c \
 			ast_tree/ft_tree_new_node.c \
 			ast_tree/build_tree.c \
 			ast_tree/ft_tree_clear.c \
 			parser_lexer/parser.c \
+			linked_list_env/ft_lstadd_front_env.c \
+			linked_list_env/ft_lstadd_back_env.c \
+			linked_list_env/ft_lstlast_env.c \
+			linked_list_env/ft_lstnew_env.c \
+			linked_list_env/ft_lstsize_env.c \
+			linked_list_env/ft_lstclear_env.c \
+			linked_list_env/ft_lstdelone_env.c \
+			linked_list_env/setup_env.c \
+			linked_list_env/replace_env_var.c \
 
 
 OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
@@ -43,7 +52,7 @@ BLU = \033[34m
 EOC = \033[0m
 
 bin/%.o: %.c
-	@mkdir -p bin bin/linked_list bin/ast_tree bin/mini_libft bin/parser_lexer
+	@mkdir -p bin bin/linked_list_token bin/ast_tree bin/mini_libft bin/parser_lexer bin/linked_list_env
 	@$(CC) $(C_OPTS) -c $< -o $@
 
 all: $(NAME)
