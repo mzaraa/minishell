@@ -32,11 +32,11 @@ static char	*rl_gets(t_data *data)
 			return (line_read);
 		data->cmd = line_read;
 		lexer(data);
-		env_var_to_value(data);
+		// env_var_to_value(data);
 		parser(data);
-		// print_tree((*data->ast_tree));
-		print_list_env(data);
+		// print_list_env(data);
 		// print_list_token(data);
+		print_tree((*data->ast_tree));
 	}
 	return (line_read);
 }

@@ -23,27 +23,31 @@ static void	node_to_pipe(t_tree	**tree, t_tree	*node)
 	}
 }
 
-static void	swap_node(t_tree **tree, t_tree *node)
+static void	swap_node(t_tree **tree, t_tree **node)
 {
 	t_tree	*tmp;
+	t_tree	*node_tmp;
 
 	tmp = *tree;
-	*tree = node;
-	node->right = tmp;
+	node_tmp = *node;
+	*tree = node_tmp;
+	node_tmp->right = tmp;
 }
 
 void	build_tree(t_tree	**tree, t_tree	*node)
 {
+	// if(*tree)
+	// 	printf("ICI : %s\n", (*tree)->token);
 	if (!*tree)
 		*tree = node;
 	else if ((*tree)->type > node->type)
-		swap_node(tree, node);
+		swap_node(tree, &node);
 	else if ((*tree)->type == node->type)
 	{
-		if (node == PIPE)
-			swap_node(tree, node);
+		if (node->type == PIPE)
+			swap_node(tree, &node);
 		else
-			build_tree(&(*tree)->right, node);
+			build_tree((&(*tree)->right), node);
 	}
 	else
 		node_to_pipe(tree, node);

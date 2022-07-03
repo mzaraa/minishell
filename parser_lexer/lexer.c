@@ -14,8 +14,7 @@
 
 void	new_token(t_data *data, char *arg, char *earg)
 {
-	ft_lstadd_back(data->ll_token,
-		ft_lstnew(ft_substr(data->cmd, arg - data->cmd, earg - arg + 1)));
+	ft_lstadd_back(data->ll_token, ft_lstnew(ft_substr(data->cmd, arg - data->cmd, earg - arg + 1)));
 }
 
 void	lexer(t_data *data)

@@ -1,5 +1,5 @@
 # SOURCES
-SRCS	= main.c \
+SRCS	=	main.c \
 			mini_libft/get_next_line.c \
 			mini_libft/get_next_line_utils.c \
 			mini_libft/ft_split.c \
@@ -30,6 +30,7 @@ SRCS	= main.c \
 			print/print_list_and_tree.c \
 
 
+
 OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
 
 # COMPILATION
@@ -53,7 +54,7 @@ BLU = \033[34m
 EOC = \033[0m
 
 bin/%.o: %.c
-	@mkdir -p bin bin/linked_list_token bin/ast_tree bin/mini_libft bin/parser_lexer bin/linked_list_env bin/print
+	@mkdir -p bin/ bin/linked_list_token bin/ast_tree bin/mini_libft bin/parser_lexer bin/linked_list_env bin/print
 	@$(CC) $(C_OPTS) -c $< -o $@
 
 all: $(NAME)
