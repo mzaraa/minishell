@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:56:00 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/06/26 15:56:01 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/08 15:07:00 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define BOLDBLUE	"\001\033"
 # define RESET		"\001\033[0m\002"
 
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
 enum	e_type
 {
@@ -61,7 +61,7 @@ typedef struct s_tree
 {
 	char			*token;
 	int				type;
-	void			(*function)(t_data*);
+	void			(*function)(t_data*, struct s_tree*);
 	struct s_tree	*right;
 	struct s_tree	*left;
 }	t_tree;
@@ -76,7 +76,6 @@ struct s_data
 	t_tree			**ast_tree;
 	t_env			**ll_env;
 };
-
 
 /* utils tokens*/
 t_tokens	*ft_lstnew(char *content);
@@ -108,6 +107,9 @@ void		lexer(t_data *data);
 t_tree		*ft_tree_new_node(char *token);
 void		build_tree(t_tree **data, t_tree *node);
 void		free_tree(t_tree **tree);
+void		pipe_init(t_data *data, t_tree *node);
+void		word_check(t_data *data, t_tree *node);
+void		is_builtin(t_data *data, t_tree *node, char	*cmd);
 
 /* print list and tree*/
 void		print_list_token(t_data *data);

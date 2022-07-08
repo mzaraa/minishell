@@ -28,6 +28,9 @@ SRCS	=	main.c \
 			linked_list_env/setup_env.c \
 			linked_list_env/replace_env_var.c \
 			print/print_list_and_tree.c \
+			exec_pipe/pipe_init.c \
+			exec_word/builtin.c \
+			exec_word/word.c \
 
 
 
@@ -35,7 +38,7 @@ OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
 
 # COMPILATION
 CC		= gcc
-FLAGS	= -Wall -Werror -Wextra -Ofast
+# FLAGS	= -Wall -Werror -Wextra -Ofast
 
 INCS	= 
 
@@ -54,7 +57,7 @@ BLU = \033[34m
 EOC = \033[0m
 
 bin/%.o: %.c
-	@mkdir -p bin/ bin/linked_list_token bin/ast_tree bin/mini_libft bin/parser_lexer bin/linked_list_env bin/print
+	@mkdir -p bin/ bin/linked_list_token bin/ast_tree bin/mini_libft bin/parser_lexer bin/linked_list_env bin/print bin/exec_pipe bin/exec_word
 	@$(CC) $(C_OPTS) -c $< -o $@
 
 all: $(NAME)

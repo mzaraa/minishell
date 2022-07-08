@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:56:37 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/01 13:56:43 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/08 18:20:52 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,30 +17,24 @@ int	tree_invalid(t_tree **tree)
 	t_tree	*node;
 
 	node = *tree;
-
 	if (!node)
 		return (1);
 	if (node->type == PIPE)
 		if (!node->left)
 			return (1);
-	if (tree_invalid(&node->right))
-		return (1);
-	if (tree_invalid(&node->left))
-		return (1);
-	return 0;
+	// if (tree_invalid(&node->right))
+	// 	return (1);
+	// if (tree_invalid(&node->left))
+	// 	return (1);
+	return (0);
 }
 
 static void	tree_top_down_exec(t_data *data)
 {
 	t_tree	*root;
-	int	pipefd[2];
 
-	pipefd[0] = dup(0);
-	pipefd[1] = dup(1);
 	root = *(data->ast_tree);
-	root->function(data);
-	dup2(pipefd[0], 0);
-	dup2(pipefd[1], 1);
+	root->function(data, root);
 }
 
 void	parser(t_data *data)
