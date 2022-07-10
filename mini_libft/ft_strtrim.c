@@ -6,16 +6,11 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:46:13 by mzaraa            #+#    #+#             */
-/*   Updated: 2021/11/13 13:21:32 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/10 12:39:03 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-/*
-Alloue et retourne une copie de la chaine ’s1’, sans les caractères spécifiés 
-dans ’set’ au début et à la fin de la chaine de caractères.
-*/
 
 static int	ft_inset(char c, char const *set)
 {

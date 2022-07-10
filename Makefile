@@ -31,6 +31,7 @@ SRCS	=	main.c \
 			exec_pipe/pipe_init.c \
 			exec_word/builtin.c \
 			exec_word/word.c \
+			exec_word/env.c \
 
 
 

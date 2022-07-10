@@ -1,11 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstnew_env.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/10 12:35:38 by mzaraa            #+#    #+#             */
+/*   Updated: 2022/07/10 12:38:10 by mzaraa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "../minishell.h"
-
-/*
-Alloue et renvoie un nouvel élément. la variable content est initialisée à 
-l’aide de la valeur du paramètre content. 
-La variable ’next’ est initialisée à NULL.
-*/
 
 t_env	*ft_lstnew_env(char *var, char *value)
 {

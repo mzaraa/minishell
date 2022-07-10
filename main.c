@@ -6,12 +6,19 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:53:32 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/08 18:36:38 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/10 11:05:35 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+/* 
+**	Recup la commande avec readline()
+**	Check si la commande n'est pas '\0' et si les quotes sont valides
+**	Si commande valide => split la commande en token puis creation de l'arbre
+**	Si commande invalide ou valide => return la commande
+**	Au rappel de la fonction, free tout les elements malloc.
+*/
 static char	*rl_gets(t_data *data)
 {
 	static char	*line_read = (char *) NULL;
@@ -24,7 +31,6 @@ static char	*rl_gets(t_data *data)
 		line_read = (char *) NULL;
 		data->cmd = NULL;
 	}
-	// line_read = ft_strdup("/bin/ls");
 	line_read = readline ("minishell » ");
 	if (line_read && *line_read)
 	{
@@ -42,6 +48,10 @@ static char	*rl_gets(t_data *data)
 	return (line_read);
 }
 
+/* 
+**	Initialisation des variables des structures du programme
+**	Lancement de la boucle
+*/
 int	main(int ac, char **av, char **env)
 {
 	t_data		data;

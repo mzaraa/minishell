@@ -6,13 +6,13 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:39:42 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/08 19:59:32 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/10 12:40:09 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	stdin_pipe(t_data *data, int *pipefd, t_tree *node)
+static void	stdin_pipe(t_data *data, int *pipefd, t_tree *node)
 {
 	int	childpid;
 
@@ -30,11 +30,9 @@ static int	stdin_pipe(t_data *data, int *pipefd, t_tree *node)
 		node->left->function(data, node->left);
 		exit(0);
 	}
-	// waitpid(childpid, NULL, 0);
-	return (childpid);
 }
 
-static int	stdout_pipe(t_data *data, int *pipefd, t_tree *node)
+static void	stdout_pipe(t_data *data, int *pipefd, t_tree *node)
 {
 	int	childpid;
 
@@ -52,8 +50,6 @@ static int	stdout_pipe(t_data *data, int *pipefd, t_tree *node)
 		node->right->function(data, node->right);
 		exit(0);
 	}
-	// waitpid(childpid, NULL, 0);
-	return (childpid);
 }
 
 void	pipe_init(t_data *data, t_tree *node)

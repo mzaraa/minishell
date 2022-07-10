@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/04 15:55:20 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 12:38:39 by mzaraa           ###   ########.fr       */
+/*   Created: 2022/07/10 13:08:32 by mzaraa            #+#    #+#             */
+/*   Updated: 2022/07/10 13:13:08 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_lstdelone(t_tokens *lst)
+void	ft_env(t_data *data, t_tree *node)
 {
-	if (lst)
-		free (lst);
+	print_list_env(data);
 }

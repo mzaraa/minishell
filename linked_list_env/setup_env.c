@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_env.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/10 12:35:51 by mzaraa            #+#    #+#             */
+/*   Updated: 2022/07/10 12:36:14 by mzaraa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 static char	*get_var(char *env)
@@ -12,7 +24,7 @@ static char	*get_var(char *env)
 		i++;
 	var = malloc(sizeof(char) * (i + 1));
 	if (!var)
-		return NULL;
+		return (NULL);
 	while (j < i)
 	{
 		var[j] = env[j];
@@ -37,7 +49,7 @@ static	char	*get_value(char *env)
 		i++;
 	value = malloc(sizeof(char) * (i + 1));
 	if (!value)
-		return NULL;
+		return (NULL);
 	while (j < i)
 	{
 		value[j] = env[j];
@@ -56,7 +68,9 @@ t_env	*get_env(char **env)
 	i = 0;
 	while (env[i])
 	{
-		ft_lstadd_back_env(&temp, ft_lstnew_env(get_var(env[i]), get_value(env[i])));
+		ft_lstadd_back_env(
+			&temp, ft_lstnew_env(
+				get_var(env[i]), get_value(env[i])));
 		i++;
 	}
 	return (temp);

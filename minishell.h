@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:56:00 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/08 15:07:00 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/10 13:15:04 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ void		free_tree(t_tree **tree);
 void		pipe_init(t_data *data, t_tree *node);
 void		word_check(t_data *data, t_tree *node);
 void		is_builtin(t_data *data, t_tree *node, char	*cmd);
+void		ft_env(t_data *data, t_tree *node);
 
 /* print list and tree*/
 void		print_list_token(t_data *data);

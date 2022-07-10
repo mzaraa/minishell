@@ -6,11 +6,15 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:56:08 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/06/26 15:57:30 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/10 11:08:37 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+/*
+**	Check seulement si des simples et doubles quotes sont presentes et valides.
+*/
 
 static int	s_quote(char *line_read)
 {

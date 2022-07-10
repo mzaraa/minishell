@@ -6,17 +6,28 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:52:45 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/06/26 15:58:01 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/10 11:17:48 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+/*
+**	Creation d'une linked list composee de chaque partie de la commande entree.
+**	ft_substr() => renvoie un char* correspondant au token que l'ont veut 
+ajouter a la linked list.
+**	arg & earg => represente l'adresse du debut et de la fin du token.
+*/
 void	new_token(t_data *data, char *arg, char *earg)
 {
-	ft_lstadd_back(data->ll_token, ft_lstnew(ft_substr(data->cmd, arg - data->cmd, earg - arg + 1)));
+	ft_lstadd_back(data->ll_token, ft_lstnew(
+			ft_substr(data->cmd, arg - data->cmd, earg - arg + 1)));
 }
 
+/*
+**	Split de la commande entree en fonction des METACHAR.
+**	Les METACHAR presents entre des simples ou doubles quote sont ignorees.
+**	arg & earg => represente l'adresse du debut et de la fin du token.
+*/
 void	lexer(t_data *data)
 {
 	char	*arg;

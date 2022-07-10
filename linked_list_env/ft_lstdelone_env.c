@@ -1,11 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstdelone_env.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/10 12:35:29 by mzaraa            #+#    #+#             */
+/*   Updated: 2022/07/10 12:38:21 by mzaraa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "../minishell.h"
 
-/*
-Libère la mémoire de l’élément passé en argument
-en utilisant la fonction del puis avec free. La
-mémoire de next ne doit pas être free.
-*/
 void	ft_lstdelone_env(t_env *lst)
 {
 	if (lst)
