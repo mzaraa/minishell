@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/20 09:46:07 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 15:40:04 by mzaraa           ###   ########.fr       */
+/*   Created: 2021/10/20 09:45:31 by mzaraa            #+#    #+#             */
+/*   Updated: 2022/07/10 14:48:02 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_strchr(char *s, int c)
+static int	ft_isdigit(int c)
 {
-	int	i;
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	return (NULL);
+static int	ft_isalpha(int c)
+{
+	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+		return (1);
+	return (0);
+}
+
+int	ft_isalnum(int c)
+{
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	return (0);
 }

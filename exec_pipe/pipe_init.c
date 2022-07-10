@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:39:42 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 12:40:09 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/10 19:36:38 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static void	stdout_pipe(t_data *data, int *pipefd, t_tree *node)
 void	pipe_init(t_data *data, t_tree *node)
 {
 	int	pipefd[2];
-	int	pids[2];
 
 	if (pipe(pipefd) == -1)
 	{

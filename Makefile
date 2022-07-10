@@ -1,8 +1,10 @@
 # SOURCES
 SRCS	=	main.c \
-			mini_libft/get_next_line.c \
-			mini_libft/get_next_line_utils.c \
 			mini_libft/ft_split.c \
+			mini_libft/ft_strtrim.c \
+			mini_libft/ft_strchr.c \
+			mini_libft/ft_substr.c \
+			mini_libft/ft_isalnum.c \
 			parser_lexer/parse_quote.c \
 			parser_lexer/lexer.c \
 			linked_list_token/ft_lstadd_back.c \
@@ -12,8 +14,6 @@ SRCS	=	main.c \
 			linked_list_token/ft_lstsize.c \
 			linked_list_token/ft_lstclear.c \
 			linked_list_token/ft_lstdelone.c \
-			mini_libft/ft_strtrim.c \
-			mini_libft/ft_substr.c \
 			ast_tree/ft_tree_new_node.c \
 			ast_tree/build_tree.c \
 			ast_tree/ft_tree_clear.c \
@@ -31,7 +31,8 @@ SRCS	=	main.c \
 			exec_pipe/pipe_init.c \
 			exec_word/builtin.c \
 			exec_word/word.c \
-			exec_word/env.c \
+			exec_word/ft_env.c \
+			exec_word/ft_export.c \
 
 
 
@@ -39,7 +40,7 @@ OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
 
 # COMPILATION
 CC		= gcc
-# FLAGS	= -Wall -Werror -Wextra -Ofast
+FLAGS	= -L~/.brew/Cellar/readline/8.1.2/lib/ -lreadline -I~/.brew/Cellar/readline/8.1.2/include/
 
 INCS	= 
 

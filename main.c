@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:53:32 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 11:05:35 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/10 19:23:39 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*rl_gets(t_data *data)
 		line_read = (char *) NULL;
 		data->cmd = NULL;
 	}
-	line_read = readline ("minishell » ");
+	line_read = readline ("\033[0;34mminishell \033[0;36m» \033[0m");
 	if (line_read && *line_read)
 	{
 		add_history (line_read);

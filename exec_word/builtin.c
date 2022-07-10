@@ -6,13 +6,13 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:39:51 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 13:47:18 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/10 14:57:56 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
 	size_t			i;
 	unsigned char	*str1;
@@ -47,8 +47,8 @@ void	is_builtin(t_data *data, t_tree *node, char	*cmd)
 	// 	ft_cd(data, node);
 	// else if (ft_strcmp("pwd", cmd) == 0)
 	// 	ft_pwd(data, node);
-	// else if (ft_strcmp("export", cmd) == 0)
-	// 	ft_export(data, node);
+	else if (ft_strcmp("export", cmd) == 0)
+		ft_export(data, node);
 	// else if (ft_strcmp("unset", cmd) == 0)
 	// 	ft_unset(data, node);
 	else if (ft_strcmp("env", cmd) == 0)
