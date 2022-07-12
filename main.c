@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:53:32 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 19:23:39 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/12 16:00:37 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static char	*rl_gets(t_data *data)
 		line_read = (char *) NULL;
 		data->cmd = NULL;
 	}
-	line_read = readline ("\033[0;34mminishell \033[0;36m» \033[0m");
+	//line_read = ft_strdup("echo nnnnn dfhgdfiuhgsidof");
+	line_read = readline ("minishell » ");
 	if (line_read && *line_read)
 	{
 		add_history (line_read);
@@ -39,7 +40,7 @@ static char	*rl_gets(t_data *data)
 			return (line_read);
 		data->cmd = line_read;
 		lexer(data);
-		// env_var_to_value(data);
+		env_var_to_value(data);
 		parser(data);
 		// print_list_env(data);
 		// print_list_token(data);
@@ -70,6 +71,7 @@ int	main(int ac, char **av, char **env)
 	data.cmd = NULL;
 	data.ast_tree = &node;
 	data.ll_env = &env_list;
+	data.status = 0;
 	while (rl_gets(&data))
 		;
 	printf("Bye \n");

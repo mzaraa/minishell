@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:09:55 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 15:54:39 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/12 09:34:18 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	export_env(t_data *data, char *var, char *value)
 		if (ft_strcmp(temp->var, var) == 0)
 		{
 			free(temp->value);
-			temp->value = NULL;
 			temp->value = ft_strdup(value);
 			return ;
 		}
 		temp = temp->next;
 	}
-	ft_lstadd_back_env(data->ll_env, ft_lstnew_env(var, value));
+	ft_lstadd_back_env(data->ll_env, ft_lstnew_env(
+			ft_strdup(var), ft_strdup(value)));
 }
 
 static int	check_export(char *var)
@@ -47,13 +47,19 @@ void	ft_export(t_data *data, t_tree *node)
 	t_tree	*temp;
 	char	*equal;
 
+	if (!node)
+		return ;
 	temp = node;
 	equal = ft_strchr(temp->right->token, '=');
 	if (!equal || *equal != '=')
 		return ;
 	*equal++ = '\0';
-	if (check_export(temp->token) && *temp->token != '=')
-		export_env(data, temp->token, equal);
+	if (check_export(temp->right->token) && *temp->right->token != '=')
+		export_env(data, temp->right->token, equal);
 	else
 		printf("error\n");
+	printf("%s\n", temp->token);
+	temp = temp->right;
+	if (temp->right != NULL)
+		ft_export(data, node->right);
 }

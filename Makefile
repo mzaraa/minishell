@@ -5,6 +5,7 @@ SRCS	=	main.c \
 			mini_libft/ft_strchr.c \
 			mini_libft/ft_substr.c \
 			mini_libft/ft_isalnum.c \
+			mini_libft/ft_itoa.c \
 			parser_lexer/parse_quote.c \
 			parser_lexer/lexer.c \
 			linked_list_token/ft_lstadd_back.c \
@@ -33,6 +34,10 @@ SRCS	=	main.c \
 			exec_word/word.c \
 			exec_word/ft_env.c \
 			exec_word/ft_export.c \
+			exec_word/ft_unset.c \
+			exec_word/ft_pwd.c \
+			exec_word/ft_cd.c \
+			exec_word/ft_execve.c \
 
 
 
@@ -40,7 +45,7 @@ OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
 
 # COMPILATION
 CC		= gcc
-FLAGS	= -L~/.brew/Cellar/readline/8.1.2/lib/ -lreadline -I~/.brew/Cellar/readline/8.1.2/include/
+FLAGS	=  -I/usr/local/include
 
 INCS	= 
 

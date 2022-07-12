@@ -6,13 +6,13 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:46:13 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 12:39:03 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/12 15:52:49 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	ft_inset(char c, char const *set)
+static int	ft_inset(char c, const char *set)
 {
 	while (*set)
 	{
@@ -22,7 +22,7 @@ static int	ft_inset(char c, char const *set)
 	return (0);
 }
 
-char	*ft_strtrim(char const	*s1, char const *set)
+char	*ft_strtrim(const char *s1, const char *set)
 {
 	char	*str;
 	int		front;

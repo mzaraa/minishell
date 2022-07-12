@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 12:35:51 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 12:36:14 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/12 09:34:35 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*get_var(char *env)
 	return (var);
 }
 
-static	char	*get_value(char *env)
+static char	*get_value(char *env)
 {
 	int		i;
 	int		j;

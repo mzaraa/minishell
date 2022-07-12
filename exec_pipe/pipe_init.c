@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:39:42 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 19:36:38 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/12 15:44:08 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void	pipe_init(t_data *data, t_tree *node)
 	stdin_pipe(data, pipefd, node);
 	close(pipefd[0]);
 	close(pipefd[1]);
-	wait(NULL);
-	wait(NULL);
+	wait(&data->status);
+	wait(&data->status);
 }

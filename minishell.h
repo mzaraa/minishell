@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:56:00 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 15:13:06 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/12 16:12:03 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ struct s_data
 	char			*cmd;
 	t_tree			**ast_tree;
 	t_env			**ll_env;
+	int				status;
 };
 
 /* utils tokens*/
@@ -109,10 +110,16 @@ void		build_tree(t_tree **data, t_tree *node);
 void		free_tree(t_tree **tree);
 void		pipe_init(t_data *data, t_tree *node);
 void		word_check(t_data *data, t_tree *node);
-void		is_builtin(t_data *data, t_tree *node, char	*cmd);
+
+/* builtin*/
+int			is_builtin(t_data *data, t_tree *node, char	*cmd);
 void		ft_env(t_data *data, t_tree *node);
 void		ft_export(t_data *data, t_tree *node);
 int			ft_isalnum(int c);
+void		ft_unset(t_data *data, t_tree *node);
+void		ft_pwd(t_data *data, t_tree *node);
+void		ft_cd(t_data *data, t_tree *node);
+void		ft_execve(t_data *data, t_tree *node, char *cmd);
 
 /* print list and tree*/
 void		print_list_token(t_data *data);
@@ -125,8 +132,9 @@ char		*ft_strjoin(char *save, char *buffer);
 size_t		ft_strlen(char *str);
 char		*get_next_line(int fd);
 char		**ft_split(char *s, char *charset);
-char		*ft_strtrim(char const	*s1, char const *set);
+char		*ft_strtrim(const char *s1, const char *set);
 char		*ft_strchr(char *s, int c);
 char		*ft_substr(char *s, unsigned int start, size_t len);
+char		*ft_itoa(int n);
 
 #endif
