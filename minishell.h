@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:56:00 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/12 16:12:03 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/13 16:37:30 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,6 @@ char		*ft_strtrim(const char *s1, const char *set);
 char		*ft_strchr(char *s, int c);
 char		*ft_substr(char *s, unsigned int start, size_t len);
 char		*ft_itoa(int n);
+void		free_all(char **tab);
 
 #endif

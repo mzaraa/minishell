@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:57:11 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/01 13:57:51 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/13 16:53:58 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_tree(t_tree **tree)
 		free_tree(&tmp->right);
 		free_tree(&tmp->left);
 	}
-	free(tmp);
+	free (tmp->token);
+	free (tmp);
 	*tree = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:53:32 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/12 16:00:37 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/13 16:54:56 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*rl_gets(t_data *data)
 		line_read = (char *) NULL;
 		data->cmd = NULL;
 	}
-	//line_read = ft_strdup("echo nnnnn dfhgdfiuhgsidof");
+	//line_read = ft_strdup("pwd");
 	line_read = readline ("minishell » ");
 	if (line_read && *line_read)
 	{

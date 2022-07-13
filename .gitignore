@@ -1,3 +1,4 @@
 .vscode
 minishell
 bin
+minishell.dSYM/

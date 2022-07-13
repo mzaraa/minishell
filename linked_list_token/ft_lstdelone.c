@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 15:55:20 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 12:38:39 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/13 16:51:41 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,8 @@
 void	ft_lstdelone(t_tokens *lst)
 {
 	if (lst)
+	{
+		free(lst->token);
 		free (lst);
+	}
 }
