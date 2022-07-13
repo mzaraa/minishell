@@ -45,7 +45,7 @@ OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
 
 # COMPILATION
 CC		= gcc
-FLAGS	=  -I/usr/local/include
+FLAGS	=  -I/usr/local/include -Wall -Wextra -Werror
 
 INCS	= 
 
@@ -70,7 +70,7 @@ bin/%.o: %.c
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(BIN_OPT) $^ -L/usr/include -lreadline -o $@
+	@$(CC) $(BIN_OPT) $^ -L/usr/include libreadline.a -ltermcap -o $@
 	@echo "$(GRE)$@ compiled 🤢$(EOC)"
 
 run: all

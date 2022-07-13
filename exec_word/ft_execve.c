@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:10:13 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/13 16:37:11 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/13 17:24:59 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**arr_arg(t_tree *node)
 	return (arr);
 }
 
-char	*find_path(t_data *data, t_tree *node, int i, char *cmd)
+char	*find_path(t_data *data, int i, char *cmd)
 {
 	char	*tmp;
 	char	**path_bis;
@@ -87,8 +87,9 @@ static int	is_forked(t_data *data, t_tree *node, char *cmd)
 {
 	char	*path;
 	int		flag;
-	int		i = 0;
+	int		i;
 
+	i = 0;
 	flag = 0;
 	path = cmd;
 	while (*path)
@@ -102,10 +103,10 @@ static int	is_forked(t_data *data, t_tree *node, char *cmd)
 		if (execve(cmd, arr_arg(node), data->env) == -1)
 			printf("error\n");
 	}
-	else if (find_path(data, node, i, cmd) == NULL)
+	else if (find_path(data, i, cmd) == NULL)
 		printf("error\n");
 	else
-		execve(find_path(data, node, i, cmd), arr_arg(node), data->env);
+		execve(find_path(data, i, cmd), arr_arg(node), data->env);
 	return (0);
 }
 
@@ -125,7 +126,8 @@ void	ft_execve(t_data *data, t_tree *node, char *cmd)
 		if (pid == 0)
 		{
 			is_forked(data, node, cmd);
+			exit(2);
 		}
-		wait(NULL);
+		wait(&data->status);
 	}
 }

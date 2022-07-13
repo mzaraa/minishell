@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 12:35:48 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/12 15:56:01 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/13 17:12:20 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 static void	swap(t_tokens **node, char *value)
 {
-	t_tokens	*new_node;
-
 	free((*node)->token);
 	(*node)->token = strdup(value);
 }
 
-static int	replace_env(t_env **env, t_tokens *token_node, t_tokens **prev)
+static int	replace_env(t_env **env, t_tokens *token_node)
 {
 	t_env		*temp_env;
 	t_tokens	*node;
-	t_tokens	*prev_node;
 
 	temp_env = *env;
 	node = token_node;
@@ -44,7 +41,6 @@ void	env_var_to_value(t_data *data)
 {
 	t_tokens	*node;
 	t_tokens	*prev_node;
-	t_env		*temp_env;
 	int			flag;
 
 	node = *(data->ll_token);
@@ -56,7 +52,7 @@ void	env_var_to_value(t_data *data)
 			swap(&node, ft_itoa(data->status));
 		if (node && *(node->token) == '$')
 		{
-			flag = replace_env(data->ll_env, node, &prev_node);
+			flag = replace_env(data->ll_env, node);
 			if (flag == 0)
 				swap(&node, " ");
 		}

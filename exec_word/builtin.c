@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:39:51 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/12 16:07:38 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/13 17:13:31 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ static void	ft_echo(t_data *data, t_tree *node)
 {
 	int	flag;
 
+	(void)data;
 	flag = 0;
 	if (!node)
 		return ;
