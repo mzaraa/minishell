@@ -55,7 +55,7 @@ static void	ft_echo(t_data *data, t_tree *node)
 	if (node->right)
 		flag = check(node->right->token);
 	if (flag == 1 && !node->right->right)
-		printf("");
+		printf(" ");
 	else
 	{
 		if (flag == 1)

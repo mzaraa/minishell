@@ -62,7 +62,7 @@ void	ft_cd(t_data *data, t_tree *node)
 
 	getcwd(old_pwd, 4096);
 	if (node->right && *(node->right->token) != ' '
-		&& node->right->token != '\0')
+		&& *(node->right->token) != '\0')
 	{
 		if (ft_strcmp(node->right->token, "-") == 0)
 		{

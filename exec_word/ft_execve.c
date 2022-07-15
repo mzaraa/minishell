@@ -80,6 +80,7 @@ char	*find_path(t_data *data, int i, char *cmd)
 		free(path);
 	}
 	free_all(path_bis);
+	data->status = 127;
 	return (NULL);
 }
 
@@ -126,8 +127,10 @@ void	ft_execve(t_data *data, t_tree *node, char *cmd)
 		if (pid == 0)
 		{
 			is_forked(data, node, cmd);
-			exit(2);
+			exit(1);
 		}
 		wait(&data->status);
+		if(data->status != 0)
+			data->status = 127;
 	}
 }

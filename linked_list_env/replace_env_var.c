@@ -40,11 +40,9 @@ static int	replace_env(t_env **env, t_tokens *token_node)
 void	env_var_to_value(t_data *data)
 {
 	t_tokens	*node;
-	t_tokens	*prev_node;
 	int			flag;
 
 	node = *(data->ll_token);
-	prev_node = node;
 	flag = 1;
 	while (node)
 	{
@@ -56,7 +54,6 @@ void	env_var_to_value(t_data *data)
 			if (flag == 0)
 				swap(&node, " ");
 		}
-		prev_node = node;
 		node = node->next;
 	}
 }
