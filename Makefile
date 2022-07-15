@@ -6,6 +6,7 @@ SRCS	=	main.c \
 			mini_libft/ft_substr.c \
 			mini_libft/ft_isalnum.c \
 			mini_libft/ft_itoa.c \
+			mini_libft/ft_putstr_fd.c \
 			parser_lexer/parse_quote.c \
 			parser_lexer/lexer.c \
 			linked_list_token/ft_lstadd_back.c \
@@ -38,6 +39,7 @@ SRCS	=	main.c \
 			exec_word/ft_pwd.c \
 			exec_word/ft_cd.c \
 			exec_word/ft_execve.c \
+			exec_word/ft_exit.c \
 
 
 

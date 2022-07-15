@@ -35,6 +35,7 @@
 # define BOLDBLUE	"\001\033"
 # define RESET		"\001\033[0m\002"
 
+
 typedef struct s_data	t_data;
 
 enum	e_type
@@ -120,6 +121,7 @@ void		ft_unset(t_data *data, t_tree *node);
 void		ft_pwd(t_data *data, t_tree *node);
 void		ft_cd(t_data *data, t_tree *node);
 void		ft_execve(t_data *data, t_tree *node, char *cmd);
+void		ft_exit(t_data *data, t_tree *node);
 
 /* print list and tree*/
 void		print_list_token(t_data *data);
@@ -137,5 +139,7 @@ char		*ft_strchr(char *s, int c);
 char		*ft_substr(char *s, unsigned int start, size_t len);
 char		*ft_itoa(int n);
 void		free_all(char **tab);
+int			ft_isdigit(int c);
+void		ft_putstr_fd(char *s, int fd);
 
 #endif

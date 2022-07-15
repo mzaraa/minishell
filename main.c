@@ -12,6 +12,20 @@
 
 #include "minishell.h"
 
+int *g_sig = NULL;
+
+void	handle_sig(int sig)
+{
+	if (sig == SIGINT)
+	{
+		printf("\n");
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+		*g_sig = 130;
+	}
+}
+
 /* 
 **	Recup la commande avec readline()
 **	Check si la commande n'est pas '\0' et si les quotes sont valides
@@ -72,7 +86,10 @@ int	main(int ac, char **av, char **env)
 	data.ast_tree = &node;
 	data.ll_env = &env_list;
 	data.status = 0;
+	g_sig = &data.status;
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, handle_sig);
 	while (rl_gets(&data))
 		;
-	printf("Bye \n");
+	printf("exit\n");
 }

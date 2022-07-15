@@ -130,7 +130,7 @@ void	ft_execve(t_data *data, t_tree *node, char *cmd)
 			exit(1);
 		}
 		wait(&data->status);
-		if(data->status != 0)
+		if(data->status != 0 && data->status != 130)
 			data->status = 127;
 	}
 }

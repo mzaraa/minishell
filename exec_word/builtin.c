@@ -86,8 +86,8 @@ int	is_builtin(t_data *data, t_tree *node, char	*cmd)
 		ft_unset(data, node);
 	else if (ft_strcmp("env", cmd) == 0)
 		ft_env(data, node);
-	// else if (ft_strcmp("exit", cmd) == 0)
-	// 	ft_exit(data, node);
+	else if (ft_strcmp("exit", cmd) == 0)
+		ft_exit(data, node);
 	else
 		return (0);
 	return (1);
