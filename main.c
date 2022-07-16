@@ -6,24 +6,23 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:53:32 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/13 16:54:56 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:49:43 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int *g_sig = NULL;
+t_data	*g_data = NULL;
 
 void	handle_sig(int sig)
 {
-	if (sig == SIGINT)
-	{
-		printf("\n");
-		rl_replace_line("", 0);
-		rl_on_new_line();
-		rl_redisplay();
-		*g_sig = 130;
-	}
+	(void)sig;
+	if (g_data->pid != 0)
+		kill(g_data->pid, SIGKILL);
+	printf("\n");
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
 }
 
 /* 
@@ -45,7 +44,6 @@ static char	*rl_gets(t_data *data)
 		line_read = (char *) NULL;
 		data->cmd = NULL;
 	}
-	//line_read = ft_strdup("pwd");
 	line_read = readline ("minishell » ");
 	if (line_read && *line_read)
 	{
@@ -56,9 +54,6 @@ static char	*rl_gets(t_data *data)
 		lexer(data);
 		env_var_to_value(data);
 		parser(data);
-		// print_list_env(data);
-		// print_list_token(data);
-		// print_tree((*data->ast_tree));
 	}
 	return (line_read);
 }
@@ -86,8 +81,8 @@ int	main(int ac, char **av, char **env)
 	data.ast_tree = &node;
 	data.ll_env = &env_list;
 	data.status = 0;
-	g_sig = &data.status;
-	signal(SIGQUIT, SIG_IGN);
+	g_data = &data;
+	signal(SIGQUIT, handle_sig);
 	signal(SIGINT, handle_sig);
 	while (rl_gets(&data))
 		;

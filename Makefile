@@ -72,8 +72,8 @@ bin/%.o: %.c
 all: $(NAME)
 
 $(NAME): $(OBJS)
-#	@$(CC) $(BIN_OPT) $^ -L/usr/include libreadline.a -ltermcap -o $@
-	@$(CC) $(BIN_OPT) $^ -L/usr/include -lreadline -o $@
+	@$(CC) $(BIN_OPT) $^ -L/usr/include libreadline.a -ltermcap -o $@
+#	@$(CC) $(BIN_OPT) $^ -L/usr/include -lreadline -o $@
 	@echo "$(GRE)$@ compiled 🤢$(EOC)"
 
 run: all

@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:10:13 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/13 17:24:59 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:20:18 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ char	*find_path(t_data *data, int i, char *cmd)
 		free(path);
 	}
 	free_all(path_bis);
-	data->status = 127;
 	return (NULL);
 }
 
@@ -102,10 +101,10 @@ static int	is_forked(t_data *data, t_tree *node, char *cmd)
 	if (flag)
 	{
 		if (execve(cmd, arr_arg(node), data->env) == -1)
-			printf("error\n");
+			exit(127);
 	}
 	else if (find_path(data, i, cmd) == NULL)
-		printf("error\n");
+		exit(127);
 	else
 		execve(find_path(data, i, cmd), arr_arg(node), data->env);
 	return (0);
@@ -124,13 +123,18 @@ void	ft_execve(t_data *data, t_tree *node, char *cmd)
 	else
 	{
 		pid = fork();
+		data->pid = pid;
 		if (pid == 0)
 		{
 			is_forked(data, node, cmd);
 			exit(1);
 		}
-		wait(&data->status);
-		if(data->status != 0 && data->status != 130)
-			data->status = 127;
+		waitpid(pid, &data->status, 0);
+		if (WTERMSIG(data->status) == SIGQUIT)
+		{
+			ft_putstr_fd("Quit :3\n", 2);
+			data->status = 131;
+		}
+		data->status = WEXITSTATUS(data->status);
 	}
 }

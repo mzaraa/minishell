@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:42:24 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/13 16:37:17 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:19:38 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	word_check(t_data *data, t_tree *node)
 {
 	int	flag;
 
-	flag = 0;
 	flag = is_builtin(data, node, node->token);
 	if (flag == 0)
 		ft_execve(data, node, node->token);

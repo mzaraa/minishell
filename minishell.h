@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:56:00 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/13 16:37:30 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/16 16:26:12 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <string.h>
+# include <signal.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
@@ -77,7 +78,10 @@ struct s_data
 	t_tree			**ast_tree;
 	t_env			**ll_env;
 	int				status;
+	pid_t			pid;
 };
+
+void		rl_replace_line(const char *text, int clear_undo);
 
 /* utils tokens*/
 t_tokens	*ft_lstnew(char *content);
@@ -141,5 +145,7 @@ char		*ft_itoa(int n);
 void		free_all(char **tab);
 int			ft_isdigit(int c);
 void		ft_putstr_fd(char *s, int fd);
+
+void		handle_sig(int sig);
 
 #endif
