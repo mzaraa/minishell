@@ -47,7 +47,7 @@ void	env_var_to_value(t_data *data)
 	while (node)
 	{
 		if (node && *(node->token) == '$' && *(node->token + 1) == '?')
-			swap(&node, ft_itoa(data->status));
+			swap(&node, ft_itoa(data->exit_code));
 		if (node && *(node->token) == '$')
 		{
 			flag = replace_env(data->ll_env, node);

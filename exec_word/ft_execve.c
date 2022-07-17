@@ -83,7 +83,7 @@ char	*find_path(t_data *data, int i, char *cmd)
 	return (NULL);
 }
 
-static int	is_forked(t_data *data, t_tree *node, char *cmd)
+static void	is_forked(t_data *data, t_tree *node, char *cmd)
 {
 	char	*path;
 	int		flag;
@@ -101,13 +101,12 @@ static int	is_forked(t_data *data, t_tree *node, char *cmd)
 	if (flag)
 	{
 		if (execve(cmd, arr_arg(node), data->env) == -1)
-			exit(127);
+			ft_error_path(cmd);
 	}
 	else if (find_path(data, i, cmd) == NULL)
-		exit(127);
+		ft_error_path(cmd);
 	else
 		execve(find_path(data, i, cmd), arr_arg(node), data->env);
-	return (0);
 }
 
 void	ft_execve(t_data *data, t_tree *node, char *cmd)
@@ -115,6 +114,9 @@ void	ft_execve(t_data *data, t_tree *node, char *cmd)
 	int	flag;
 	int	pid;
 
+	signal(SIGQUIT, handle_sig);
+	signal(SIGINT, handle_sig);
+	data->exit_code = 0;
 	flag = 0;
 	if ((*(data->ast_tree))->type == PIPE)
 		flag = 1;
@@ -127,14 +129,20 @@ void	ft_execve(t_data *data, t_tree *node, char *cmd)
 		if (pid == 0)
 		{
 			is_forked(data, node, cmd);
-			exit(1);
+			exit(127);
 		}
 		waitpid(pid, &data->status, 0);
 		if (WTERMSIG(data->status) == SIGQUIT)
 		{
-			ft_putstr_fd("Quit :3\n", 2);
-			data->status = 131;
+			data->is_sig = 1;
+			data->exit_code = 131;
 		}
-		data->status = WEXITSTATUS(data->status);
+		if (WTERMSIG(data->status) == SIGINT)
+			{
+				data->is_sig = 1;
+				data->exit_code = 130;
+			}
+		if (data->exit_code < 130 || data->exit_code > 132)
+			data->exit_code = WEXITSTATUS(data->status);
 	}
 }

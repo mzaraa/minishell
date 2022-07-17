@@ -46,6 +46,14 @@ enum	e_type
 	WORD,
 };
 
+// typedef struct s_pid_list
+// {
+// 	pid_t				pid;
+// 	struct s_pid_list	*next;
+// }	t_pid_list;
+
+// extern t_pid_list		*g_pid;
+
 typedef struct s_tokens
 {
 	char			*token;
@@ -79,6 +87,9 @@ struct s_data
 	t_env			**ll_env;
 	int				status;
 	pid_t			pid;
+	int				exit_code;
+	int				is_sig;
+
 };
 
 void		rl_replace_line(const char *text, int clear_undo);
@@ -115,6 +126,7 @@ void		build_tree(t_tree **data, t_tree *node);
 void		free_tree(t_tree **tree);
 void		pipe_init(t_data *data, t_tree *node);
 void		word_check(t_data *data, t_tree *node);
+void		ft_error_path(char *cmd);
 
 /* builtin*/
 int			is_builtin(t_data *data, t_tree *node, char	*cmd);

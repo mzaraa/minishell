@@ -17,12 +17,16 @@ t_data	*g_data = NULL;
 void	handle_sig(int sig)
 {
 	(void)sig;
+	// if (g_data->status == 0) 
+	// 	g_data->exit_code = 130;
 	if (g_data->pid != 0)
-		kill(g_data->pid, SIGKILL);
+	kill(g_data->pid, SIGKILL);
 	printf("\n");
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
+	if (!g_data->is_sig)
+		g_data->exit_code = 0;
 }
 
 /* 
@@ -81,9 +85,13 @@ int	main(int ac, char **av, char **env)
 	data.ast_tree = &node;
 	data.ll_env = &env_list;
 	data.status = 0;
+	data.exit_code = 0;
 	g_data = &data;
-	signal(SIGQUIT, handle_sig);
+	data.is_sig = 0;
+	// g_pid = NULL;
+	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, handle_sig);
+	// setup_int_signals();
 	while (rl_gets(&data))
 		;
 	printf("exit\n");

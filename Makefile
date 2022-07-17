@@ -40,6 +40,7 @@ SRCS	=	main.c \
 			exec_word/ft_cd.c \
 			exec_word/ft_execve.c \
 			exec_word/ft_exit.c \
+			ft_error.c \
 
 
 
@@ -72,8 +73,8 @@ bin/%.o: %.c
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(BIN_OPT) $^ -L/usr/include libreadline.a -ltermcap -o $@
-#	@$(CC) $(BIN_OPT) $^ -L/usr/include -lreadline -o $@
+#	@$(CC) $(BIN_OPT) $^ -L/usr/include libreadline.a -ltermcap -o $@
+	@$(CC) $(BIN_OPT) $^ -L/usr/include -lreadline -o $@
 	@echo "$(GRE)$@ compiled 🤢$(EOC)"
 
 run: all

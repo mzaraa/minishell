@@ -71,11 +71,18 @@ void	pipe_init(t_data *data, t_tree *node)
 	close(pipefd[1]);
 	waitpid(pids[0], &data->status, 0);
 	waitpid(pids[1], &data->status, 0);
-	if (WTERMSIG(data->status) == SIGQUIT)
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, handle_sig);
+		if (WTERMSIG(data->status) == SIGQUIT)
 	{
 		ft_putstr_fd("Quit :3\n", 2);
-		data->status = 45;
+		data->exit_code = 131;
 	}
-	else
-		data->status = WEXITSTATUS(data->status);
+	if (WTERMSIG(data->status) == SIGINT)
+	{
+		ft_putstr_fd("\n", 2);
+		data->exit_code = 130;
+	}
+	if (data->exit_code < 130 || data->exit_code > 132)
+		data->exit_code = WEXITSTATUS(data->status);
 }
