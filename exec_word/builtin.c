@@ -90,5 +90,6 @@ int	is_builtin(t_data *data, t_tree *node, char	*cmd)
 		ft_exit(data, node);
 	else
 		return (0);
+	data->exit_code = 0;
 	return (1);
 }

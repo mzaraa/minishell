@@ -16,16 +16,18 @@ t_data	*g_data = NULL;
 
 void	handle_sig(int sig)
 {
-	(void)sig;
-	// if (g_data->status == 0) 
-	// 	g_data->exit_code = 130;
+	// (void)sig;
+	if (sig == SIGQUIT)
+		printf("\n");
 	if (g_data->pid != 0)
-	kill(g_data->pid, SIGKILL);
+		kill(g_data->pid, SIGKILL);
+	if (sig == SIGINT)
+		g_data->exit_code = 130;
 	printf("\n");
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-	if (!g_data->is_sig)
+	if (g_data->is_sig != 0)
 		g_data->exit_code = 0;
 }
 
@@ -47,6 +49,7 @@ static char	*rl_gets(t_data *data)
 		free_tree(data->ast_tree);
 		line_read = (char *) NULL;
 		data->cmd = NULL;
+		g_data->is_sig = 0;
 	}
 	line_read = readline ("minishell » ");
 	if (line_read && *line_read)

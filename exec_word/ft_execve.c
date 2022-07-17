@@ -92,6 +92,8 @@ static void	is_forked(t_data *data, t_tree *node, char *cmd)
 	i = 0;
 	flag = 0;
 	path = cmd;
+	signal(SIGQUIT, handle_sig);
+	signal(SIGINT, handle_sig);
 	while (*path)
 	{
 		if (*path == '/')
@@ -114,8 +116,6 @@ void	ft_execve(t_data *data, t_tree *node, char *cmd)
 	int	flag;
 	int	pid;
 
-	signal(SIGQUIT, handle_sig);
-	signal(SIGINT, handle_sig);
 	data->exit_code = 0;
 	flag = 0;
 	if ((*(data->ast_tree))->type == PIPE)
@@ -138,10 +138,10 @@ void	ft_execve(t_data *data, t_tree *node, char *cmd)
 			data->exit_code = 131;
 		}
 		if (WTERMSIG(data->status) == SIGINT)
-			{
-				data->is_sig = 1;
-				data->exit_code = 130;
-			}
+		{
+			data->is_sig = 1;
+			data->exit_code = 130;
+		}
 		if (data->exit_code < 130 || data->exit_code > 132)
 			data->exit_code = WEXITSTATUS(data->status);
 	}

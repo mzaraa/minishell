@@ -65,6 +65,7 @@ void	pipe_init(t_data *data, t_tree *node)
 		perror("pipe : ");
 		exit(1);
 	}
+	data->is_sig = 1;
 	pids[0] = stdout_pipe(data, pipefd, node);
 	pids[1] = stdin_pipe(data, pipefd, node);
 	close(pipefd[0]);

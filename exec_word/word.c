@@ -70,4 +70,5 @@ void	word_check(t_data *data, t_tree *node)
 	flag = is_builtin(data, node, node->token);
 	if (flag == 0)
 		ft_execve(data, node, node->token);
+	data->is_sig = 0;
 }
