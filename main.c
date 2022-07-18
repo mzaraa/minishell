@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:53:32 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/16 16:49:43 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 21:19:46 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,41 @@
 
 t_data	*g_data = NULL;
 
-void	handle_sig(int sig)
+void	ign(int sig_num)
 {
-	// (void)sig;
-	if (sig == SIGQUIT)
+	(void)sig_num;
+}
+
+void	handler(int sig_num)
+{
+	if (sig_num == SIGINT)
 		printf("\n");
-	if (g_data->pid != 0)
-		kill(g_data->pid, SIGKILL);
-	if (sig == SIGINT)
-		g_data->exit_code = 130;
-	printf("\n");
-	rl_replace_line("", 0);
 	rl_on_new_line();
+	rl_replace_line("", 0);
 	rl_redisplay();
-	if (g_data->is_sig != 0)
-		g_data->exit_code = 0;
+	return ;
+}
+
+void	termios(int ctl)
+{
+	struct termios	termios_p;
+	int				tty;
+
+	tty = ttyslot();
+	tcgetattr(tty, &termios_p);
+	if (ctl)
+	{
+		termios_p.c_lflag |= ECHOCTL;
+		signal(SIGINT, ign);
+		signal(SIGQUIT, ign);
+	}
+	else
+	{
+		termios_p.c_lflag &= ~(ECHOCTL);
+		signal(SIGINT, handler);
+		signal(SIGQUIT, handler);
+	}
+	tcsetattr(tty, TCSANOW, &termios_p);
 }
 
 /* 
@@ -51,7 +71,9 @@ static char	*rl_gets(t_data *data)
 		data->cmd = NULL;
 		g_data->is_sig = 0;
 	}
+	termios(0);
 	line_read = readline ("minishell » ");
+	termios(1);
 	if (line_read && *line_read)
 	{
 		add_history (line_read);
@@ -59,6 +81,7 @@ static char	*rl_gets(t_data *data)
 			return (line_read);
 		data->cmd = line_read;
 		lexer(data);
+		print_list_token(data);
 		env_var_to_value(data);
 		parser(data);
 	}
@@ -91,10 +114,6 @@ int	main(int ac, char **av, char **env)
 	data.exit_code = 0;
 	g_data = &data;
 	data.is_sig = 0;
-	// g_pid = NULL;
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sig);
-	// setup_int_signals();
 	while (rl_gets(&data))
 		;
 	printf("exit\n");

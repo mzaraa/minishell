@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 10:44:45 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/12 13:10:20 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 11:22:22 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	ft_cd(t_data *data, t_tree *node)
 		if (ft_strcmp(node->right->token, "-") == 0)
 		{
 			new_pwd = get_env_val(data->ll_env, "OLDPWD");
-			printf("OLD = %s --- NEW = %s\n", old_pwd, new_pwd);
 		}
 		else if (node->right != NULL && *(node->right->token) != '|')
 			new_pwd = node->right->token;
@@ -75,5 +74,7 @@ void	ft_cd(t_data *data, t_tree *node)
 	else
 		new_pwd = get_env_val(data->ll_env, "HOME");
 	chdir(new_pwd);
-	change_env_dir(data->ll_env, getcwd(temp_pwd, 4096), old_pwd);
+	if (getcwd(temp_pwd, 4096) == NULL)
+		return ;
+	change_env_dir(data->ll_env, temp_pwd, old_pwd);
 }

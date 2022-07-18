@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:56:00 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/16 16:26:12 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 20:49:30 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <unistd.h>
 # include <errno.h>
 # include <fcntl.h>
+# include <termios.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -36,7 +37,6 @@
 # define BOLDBLUE	"\001\033"
 # define RESET		"\001\033[0m\002"
 
-
 typedef struct s_data	t_data;
 
 enum	e_type
@@ -45,14 +45,6 @@ enum	e_type
 	REDIRECTION,
 	WORD,
 };
-
-// typedef struct s_pid_list
-// {
-// 	pid_t				pid;
-// 	struct s_pid_list	*next;
-// }	t_pid_list;
-
-// extern t_pid_list		*g_pid;
 
 typedef struct s_tokens
 {
@@ -114,6 +106,11 @@ void		ft_lstadd_back_env(t_env **alst, t_env *new);
 int			ft_lstsize_env(t_env *lst);
 void		ft_lstclear_env(t_env **lst);
 void		ft_lstdelone_env(t_env *lst);
+void		replace_in_quote(t_data *data, t_env **env, t_tokens *node);
+void		ft_trim_d_quote(t_tokens *node);
+void		ft_trim_s_quote(t_tokens *node);
+void		change_env(t_data *data, t_env **env);
+void		free_env(char **env);
 
 /* check quote*/
 int			valid_quote(char *line_read);
@@ -143,6 +140,7 @@ void		ft_exit(t_data *data, t_tree *node);
 void		print_list_token(t_data *data);
 void		print_list_env(t_data *data);
 void		print_tree(t_tree *tree);
+void		print_list_env_only_export(t_data *data);
 int			ft_strcmp(const char *s1, const char *s2);
 
 /* mini_libft */
@@ -157,7 +155,11 @@ char		*ft_itoa(int n);
 void		free_all(char **tab);
 int			ft_isdigit(int c);
 void		ft_putstr_fd(char *s, int fd);
+void		ft_trim_s_quote(t_tokens *node);
+char		*join_three(char *s1, char *s2, char *s3);
+void		ft_substrcat(char *dst, char *src, size_t n_byte);
 
 void		handle_sig(int sig);
+int			get_status(t_data *datas, int status);
 
 #endif

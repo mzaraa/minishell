@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:52:45 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/12 13:21:41 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 18:48:13 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	lexer(t_data *data)
 		earg = arg;
 		while (!ft_strchr(METACHAR, *arg))
 		{
-			if (*earg == '\'' || *earg == '\"')
+			if ((*earg == '\'' || *earg == '"'))
 				earg = ft_strchr(earg + 1, *earg);
 			if (strchr(METACHAR, *(earg + 1)))
 				break ;

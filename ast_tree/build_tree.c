@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:52:26 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/06/26 15:52:27 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 11:28:08 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ static void	swap_node(t_tree **tree, t_tree **node)
 
 void	build_tree(t_tree	**tree, t_tree	*node)
 {
-	// if(*tree)
-	// 	printf("ICI : %s\n", (*tree)->token);
 	if (!*tree)
 		*tree = node;
 	else if ((*tree)->type > node->type)

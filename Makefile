@@ -7,8 +7,10 @@ SRCS	=	main.c \
 			mini_libft/ft_isalnum.c \
 			mini_libft/ft_itoa.c \
 			mini_libft/ft_putstr_fd.c \
+			mini_libft/ft_strlcat.c \
 			parser_lexer/parse_quote.c \
 			parser_lexer/lexer.c \
+			parser_lexer/replace_var.c \
 			linked_list_token/ft_lstadd_back.c \
 			linked_list_token/ft_lstadd_front.c \
 			linked_list_token/ft_lstlast.c \
@@ -48,7 +50,7 @@ OBJS	= $(addprefix bin/, $(SRCS:.c=.o))
 
 # COMPILATION
 CC		= gcc
-FLAGS	=  -I/usr/local/include -Wall -Wextra -Werror
+FLAGS	=  -I/usr/local/include -Wall -Wextra -Werror 
 
 INCS	= 
 
@@ -73,8 +75,8 @@ bin/%.o: %.c
 all: $(NAME)
 
 $(NAME): $(OBJS)
-#	@$(CC) $(BIN_OPT) $^ -L/usr/include libreadline.a -ltermcap -o $@
-	@$(CC) $(BIN_OPT) $^ -L/usr/include -lreadline -o $@
+	@$(CC) $(BIN_OPT) $^ -L/usr/include libreadline.a -ltermcap -o $@
+#	@$(CC) $(BIN_OPT) $^ -L/usr/include -lreadline -o $@
 	@echo "$(GRE)$@ compiled 🤢$(EOC)"
 
 run: all

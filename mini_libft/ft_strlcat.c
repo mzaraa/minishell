@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 10:28:06 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/18 21:52:46 by mzaraa           ###   ########.fr       */
+/*   Created: 2021/10/20 09:46:22 by mzaraa            #+#    #+#             */
+/*   Updated: 2022/07/18 20:49:09 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	get_status(t_data *data, int status)
+void	ft_substrcat(char *dst, char *src, size_t n_byte)
 {
-	int	res;
+	size_t	i;
+	size_t	j;
 
-	if (WIFSIGNALED(status))
-	{
-		res = 128 + WTERMSIG(status);
-		if (data->exit_code == 131)
-			printf("Quit: 3\n");
-	}
-	else
-		res = WEXITSTATUS(status);
-	return (res);
-}
-
-void	ft_error_path(char *cmd)
-{
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(cmd, 2);
-	ft_putstr_fd(" command not found\n", 2);
-	exit (127);
+	i = ft_strlen(dst);
+	j = 0;
+	if (!dst && !src)
+		return ;
+	while (src[j] != '\0' && j < n_byte)
+		dst[i++] = src[j++];
+	dst[i] = '\0';
 }

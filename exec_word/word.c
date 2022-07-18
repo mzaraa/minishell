@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 14:42:24 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/16 16:19:38 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 20:15:42 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@ void	free_all(char **tab)
 			free(tab[i++]);
 		free(tab);
 	}
+}
+
+char	*join_three(char *s1, char *s2, char *s3)
+{
+	char	*temp;
+	char	*temp2;
+
+	temp = ft_strjoin(s1, s2);
+	if (!temp)
+		return (NULL);
+	temp2 = ft_strjoin(temp, s3);
+	free (temp);
+	return (temp2);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

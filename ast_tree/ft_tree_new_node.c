@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:52:32 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 12:45:54 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 15:09:25 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_tree	*ft_tree_new_node(char *token)
 	t_tree	*new_node;
 
 	new_node = malloc(sizeof(t_tree));
-	new_node->token = strdup(token);
+	new_node->token = ft_strdup(token);
 	new_node->left = NULL;
 	new_node->right = NULL;
 	if (*token == '|' && !(*(token + 1)))

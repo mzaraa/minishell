@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:45:30 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/06/26 15:59:33 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 20:52:20 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,32 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		str[j++] = s[start++];
 	str[j] = '\0';
 	return (str);
+}
+
+void	ft_trim_s_quote(t_tokens *node)
+{
+	char	*temp;
+	char	*res;
+	int		i;
+
+	i = 0;
+	temp = node->token;
+	res = malloc(sizeof(char) * strlen(temp) + 1);
+	while (*temp)
+	{
+		if (*temp == '\'')
+		{
+			res[i] = '\0';
+			ft_substrcat(res, temp + 1,
+				ft_strchr(temp + 1, '\'') - (temp + 1));
+			temp = ft_strchr(temp + 1, '\'') + 1;
+			i = ft_strlen(res);
+			continue ;
+		}
+		res[i++] = *temp;
+		temp++;
+	}
+	res[i] = '\0';
+	free(node->token);
+	node->token = res;
 }

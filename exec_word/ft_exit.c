@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/18 11:25:13 by mzaraa            #+#    #+#             */
+/*   Updated: 2022/07/18 11:27:07 by mzaraa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	ft_atoi(const char *str)
@@ -28,18 +40,16 @@ int	is_num(char *token)
 		if (!ft_isdigit(*token))
 			return (1);
 		++token;
-	} 
+	}
 	return (0);
 }
 
 void	ft_exit(t_data *data, t_tree *node)
 {
 	t_tree	*temp;
-	int		flag;
 
 	(void)data;
 	temp = node;
-	flag = 0;
 	while (temp)
 	{
 		temp = temp->right;
@@ -50,8 +60,7 @@ void	ft_exit(t_data *data, t_tree *node)
 			ft_putstr_fd("exit : too many args\n", 2);
 			return ;
 		}
-		flag = is_num(temp->token);
-		if (flag == 1)
+		if (is_num(temp->token))
 		{
 			ft_putstr_fd("exit : non numeric arg\n", 2);
 			return ;

@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:39:42 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/16 16:09:15 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 11:27:32 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,5 @@ void	pipe_init(t_data *data, t_tree *node)
 	close(pipefd[1]);
 	waitpid(pids[0], &data->status, 0);
 	waitpid(pids[1], &data->status, 0);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, handle_sig);
-		if (WTERMSIG(data->status) == SIGQUIT)
-	{
-		ft_putstr_fd("Quit :3\n", 2);
-		data->exit_code = 131;
-	}
-	if (WTERMSIG(data->status) == SIGINT)
-	{
-		ft_putstr_fd("\n", 2);
-		data->exit_code = 130;
-	}
-	if (data->exit_code < 130 || data->exit_code > 132)
-		data->exit_code = WEXITSTATUS(data->status);
+	data->exit_code = get_status(data, data->status);
 }

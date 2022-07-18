@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:39:51 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/16 12:00:31 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 09:11:15 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int	is_builtin(t_data *data, t_tree *node, char	*cmd)
 		ft_exit(data, node);
 	else
 		return (0);
-	data->exit_code = 0;
+	if (data->exit_code != 2)
+		data->exit_code = 0;
 	return (1);
 }

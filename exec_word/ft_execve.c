@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:10:13 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/16 16:20:18 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/18 21:41:14 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,9 @@ static void	is_forked(t_data *data, t_tree *node, char *cmd)
 {
 	char	*path;
 	int		flag;
-	int		i;
 
-	i = 0;
 	flag = 0;
 	path = cmd;
-	signal(SIGQUIT, handle_sig);
-	signal(SIGINT, handle_sig);
 	while (*path)
 	{
 		if (*path == '/')
@@ -105,10 +101,11 @@ static void	is_forked(t_data *data, t_tree *node, char *cmd)
 		if (execve(cmd, arr_arg(node), data->env) == -1)
 			ft_error_path(cmd);
 	}
-	else if (find_path(data, i, cmd) == NULL)
+	else if (find_path(data, 0, cmd) == NULL)
 		ft_error_path(cmd);
 	else
-		execve(find_path(data, i, cmd), arr_arg(node), data->env);
+		execve(find_path(data, 0, cmd), arr_arg(node), data->env);
+	ft_putstr_fd("ERROR\n", 2);
 }
 
 void	ft_execve(t_data *data, t_tree *node, char *cmd)
@@ -132,17 +129,6 @@ void	ft_execve(t_data *data, t_tree *node, char *cmd)
 			exit(127);
 		}
 		waitpid(pid, &data->status, 0);
-		if (WTERMSIG(data->status) == SIGQUIT)
-		{
-			data->is_sig = 1;
-			data->exit_code = 131;
-		}
-		if (WTERMSIG(data->status) == SIGINT)
-		{
-			data->is_sig = 1;
-			data->exit_code = 130;
-		}
-		if (data->exit_code < 130 || data->exit_code > 132)
-			data->exit_code = WEXITSTATUS(data->status);
+		data->exit_code = get_status(data, data->status);
 	}
 }
