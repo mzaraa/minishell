@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:10:13 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/18 21:41:14 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/19 07:52:42 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ char	*find_path(t_data *data, int i, char *cmd)
 
 	path_bis = NULL;
 	path = NULL;
-	while (!ft_strnstr(data->env[i], "PATH", 4))
+	while (data->env[i] && !ft_strnstr(data->env[i], "PATH", 4))
 		i++;
+	if (!data->env[i])
+		exit (127);
 	path_bis = ft_split(data->env[i] + 5, ":");
 	i = 0;
 	while (path_bis[i++])

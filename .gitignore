@@ -1,4 +1,7 @@
-.vscode
-minishell
-bin
-minishell.dSYM/
+*
+!*/
+!*/**/*.c
+!*/**/*.h
+!Makefile
+!*/*.c
+!*/*.h

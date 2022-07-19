@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:09:55 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/18 19:59:22 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/19 10:32:13 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ void	export_env(t_data *data, char *var, char *value)
 
 static int	check_export(char *var)
 {
+	if (!ft_isdigit(*var) && *var != '_')
+		return (0);
 	while (*var)
 	{
-		if (!ft_isalnum(*var))
+		if (!ft_isalnum(*var) && *var != '_')
 			return (0);
 		var++;
 	}
