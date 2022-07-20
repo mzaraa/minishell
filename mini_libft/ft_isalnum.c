@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 09:45:31 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 14:48:02 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/20 16:54:44 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,17 @@ static int	ft_isalpha(int c)
 int	ft_isalnum(int c)
 {
 	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	return (0);
+}
+int	recup_var_name(char c)
+{
+	
+}
+
+int	check_char_for_var(char c)
+{
+	if (ft_isalpha(c) || c == '_' || c == '?')
 		return (1);
 	return (0);
 }

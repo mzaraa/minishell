@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:56:00 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/18 20:49:30 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/20 16:54:58 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define METACHAR	" \t\n|&<>"
 # define BOLDBLUE	"\001\033"
 # define RESET		"\001\033[0m\002"
+# define NOTHING	0
+# define SIMPLE_Q	1
+# define DOUBLE_Q	2
 
 typedef struct s_data	t_data;
 
@@ -49,6 +52,7 @@ enum	e_type
 typedef struct s_tokens
 {
 	char			*token;
+	int				state;
 	struct s_tokens	*next;
 }	t_tokens;
 
@@ -136,6 +140,11 @@ void		ft_cd(t_data *data, t_tree *node);
 void		ft_execve(t_data *data, t_tree *node, char *cmd);
 void		ft_exit(t_data *data, t_tree *node);
 
+int			recup_var_name(char c);
+int			check_char_for_var(char c);
+int			state(t_tokens *node, int i);
+int			var_to_val(t_data *data, t_tokens *node, char *temp, int j);
+
 /* print list and tree*/
 void		print_list_token(t_data *data);
 void		print_list_env(t_data *data);
@@ -158,6 +167,7 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_trim_s_quote(t_tokens *node);
 char		*join_three(char *s1, char *s2, char *s3);
 void		ft_substrcat(char *dst, char *src, size_t n_byte);
+void		*ft_calloc(size_t count, size_t size);
 
 void		handle_sig(int sig);
 int			get_status(t_data *datas, int status);

@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 12:35:48 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/18 21:19:08 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/20 16:59:25 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	replace_env(t_env **env, t_tokens *token_node)
 	return (0);
 }
 
-void	env_var_to_value(t_data *data)
+/* void	env_var_to_value(t_data *data)
 {
 	t_tokens	*node;
 	int			flag;
@@ -59,7 +59,7 @@ void	env_var_to_value(t_data *data)
 		node = node->next;
 	}
 	get_var_value(data);
-}
+} */
 
 static void	get_var_value(t_data *data)
 {

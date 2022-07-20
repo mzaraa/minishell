@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 13:41:03 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 12:38:51 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/20 09:30:36 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_tokens	*ft_lstnew(char *content)
 	if (!node)
 		return (NULL);
 	node->token = content;
+	node->state = 0;
 	node->next = NULL;
 	return (node);
 }
