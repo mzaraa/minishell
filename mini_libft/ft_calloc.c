@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 09:45:00 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/20 11:01:59 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/21 15:22:12 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ptr_ma;
 
-	ptr_ma = (void *)malloc(count * size);
+	ptr_ma = malloc(count * size);
 	if (!ptr_ma)
 		return (NULL);
 	ft_bzero(ptr_ma, count * size);

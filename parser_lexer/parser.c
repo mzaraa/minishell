@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/01 13:56:37 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/10 18:21:08 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/21 20:08:17 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	parser(t_data *data)
 	}
 	if (tree_invalid(data->ast_tree))
 	{
-		useless = write(2, "error\n", 6);
+		printf("\033[91merror\033[0m\n");
 		useless++;
 		return ;
 	}

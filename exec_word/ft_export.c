@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 14:09:55 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/19 10:32:13 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/21 20:07:29 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_export(t_data *data, t_tree *node)
 		export_env(data, temp->right->token, equal);
 	else
 	{
-		printf("error\n");
+		printf("\033[91merror\033[0m\n");
 		data->exit_code = 2;
 		return ;
 	}

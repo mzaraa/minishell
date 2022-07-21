@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/20 09:45:31 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/20 16:54:44 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/21 17:51:07 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int	ft_isalnum(int c)
 }
 int	recup_var_name(char c)
 {
-	
+	if (!ft_isalnum(c) && c != '_')
+			return (0);
+	return (1);
 }
 
 int	check_char_for_var(char c)

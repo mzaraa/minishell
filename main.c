@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:53:32 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/19 08:06:14 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:58:20 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ static char	*rl_gets(t_data *data)
 			return (line_read);
 		data->cmd = line_read;
 		lexer(data);
+		// env_var_to_value(data);
 		env_var_to_value(data);
 		parser(data);
-		print_list_token(data);
+		// print_list_token(data);
 	}
 	return (line_read);
 }

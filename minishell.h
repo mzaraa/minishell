@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:56:00 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/20 16:54:58 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/21 17:48:53 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,11 @@ struct s_data
 	pid_t			pid;
 	int				exit_code;
 	int				is_sig;
-
+	int				idx;
 };
 
 void		rl_replace_line(const char *text, int clear_undo);
+int			var_to_value(t_data *data, char *token, char *temp, int j);
 
 /* utils tokens*/
 t_tokens	*ft_lstnew(char *content);

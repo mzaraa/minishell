@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:52:45 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/20 16:57:32 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/21 19:33:39 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,25 @@ int	state(t_tokens *node, int i)
 	return (1);
 }
 
+char	*get_val(t_data *data, char *name)
+{
+	t_env	*env;
+	char	*res;
+
+	env = *data->ll_env;
+	while (env)
+	{
+		if (ft_strcmp(env->var, name) == 0)
+		{
+			res = ft_strdup(env->value);
+			return (res);
+		}
+		env = env->next;
+	}
+	res = ft_strdup("");
+	return (res);
+}
+
 int	var_to_value(t_data *data, char *token, char *temp, int j)
 {
 	char	*val;
@@ -77,13 +96,28 @@ int	var_to_value(t_data *data, char *token, char *temp, int j)
 	int		len;
 
 	len = 0;
+	i = 0;
 	if (token[i + 1] == '?')
+	{
 		val = ft_itoa(data->exit_code);
+		data->idx = 2;
+	}
 	else
 	{
 		while (recup_var_name(token[++i]))
+		{
 			++len;
-		name = ft_substr((token + i + 1), 0, len + 1);
-		val = 
+			data->idx = len;
+		}
+		name = ft_substr((token + 1), 0, len);
+		val = get_val(data, name);
+		// printf(">> %s=%s=%s <<\n", token, name, val);
 	}
+	i = 0;
+	while (val[i])
+		temp[j++] = val[i++];
+	//printf("ICI >>>>>>> %s", temp);
+	free(val);
+	free(name);
+	return (j);
 }

@@ -30,7 +30,7 @@ SRCS	=	main.c \
 			linked_list_env/ft_lstclear_env.c \
 			linked_list_env/ft_lstdelone_env.c \
 			linked_list_env/setup_env.c \
-			linked_list_env/replace_env_var.c \
+			linked_list_env/var_replace_v2.c \
 			print/print_list_and_tree.c \
 			exec_pipe/pipe_init.c \
 			exec_word/builtin.c \
@@ -44,6 +44,7 @@ SRCS	=	main.c \
 			exec_word/ft_exit.c \
 			ft_error.c \
 
+# linked_list_env/replace_env_var.c \
 
 
 OBJS	= $(addprefix bin/, $(SRCS:.c=.o))

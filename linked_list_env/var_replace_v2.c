@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:59:29 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/20 17:05:28 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/21 18:16:57 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	get_var_val_in_token(t_data *data, t_tokens *node)
 	int		j;
 	int		i;
 
-	temp = calloc(2048, sizeof(char));
+	temp = calloc(1000, sizeof(char));
 	to_free = node->token;
 	j = 0;
 	i = 0;
@@ -32,15 +32,20 @@ void	get_var_val_in_token(t_data *data, t_tokens *node)
 		}
 		if (node->token[i] == '$' && node->state != SIMPLE_Q
 			&& check_char_for_var(node->token[i + 1]))
-			j = var_to_value(data, (node->token + i), temp, j);
+		{
+				j = var_to_value(data, (node->token + i), temp, j);
+				i += data->idx + 1;
+		}
 		else
 		{
 			temp[j] = node->token[i];
 			++i;
 			++j;
 		}
+		//printf("temp = %s\n", temp);
 	}
 	free(node->token);
+	node->token = temp;
 }
 
 void	env_var_to_value(t_data *data)
@@ -55,21 +60,21 @@ void	env_var_to_value(t_data *data)
 	}
 }
 
-static int	replace_env(t_env **env, t_tokens *token_node)
-{
-	t_env		*temp_env;
-	t_tokens	*node;
+// static int	replace_env(t_env **env, t_tokens *token_node)
+// {
+// 	t_env		*temp_env;
+// 	t_tokens	*node;
 
-	temp_env = *env;
-	node = token_node;
-	while (temp_env)
-	{
-		if ((strcmp(temp_env->var, (node->token + 1))) == 0)
-		{
-			swap(&node, temp_env->value);
-			return (1);
-		}
-		temp_env = temp_env->next;
-	}
-	return (0);
-}
+// 	temp_env = *env;
+// 	node = token_node;
+// 	while (temp_env)
+// 	{
+// 		if ((strcmp(temp_env->var, (node->token + 1))) == 0)
+// 		{
+// 			swap(&node, temp_env->value);
+// 			return (1);
+// 		}
+// 		temp_env = temp_env->next;
+// 	}
+// 	return (0);
+// }
