@@ -43,7 +43,7 @@ void	export_env(t_data *data, char *var, char *value)
 
 static int	check_export(char *var)
 {
-	if (!ft_isdigit(*var) && *var != '_')
+	if (!ft_isalpha(*var) && *var != '_')
 		return (0);
 	while (*var)
 	{
@@ -72,7 +72,7 @@ void	ft_export(t_data *data, t_tree *node)
 		export_env(data, temp->right->token, equal);
 	else
 	{
-		printf("\033[91merror\033[0m\n");
+		printf("\033[91mExport Error\033[0m\n");
 		data->exit_code = 2;
 		return ;
 	}

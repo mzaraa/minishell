@@ -66,12 +66,12 @@ int	valid_quote(char *line_read)
 {
 	if (!s_quote(line_read))
 	{
-		printf("Erreur de quotes\n");
+		ft_putstr_fd("Erreur de quotes\n", 2);
 		return (0);
 	}
 	if (!d_quote(line_read))
 	{
-		printf("Erreur de quotes\n");
+		ft_putstr_fd("Erreur de quotes\n", 2);
 		return (0);
 	}
 	return (1);

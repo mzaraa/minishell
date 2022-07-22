@@ -97,10 +97,12 @@ int	var_to_value(t_data *data, char *token, char *temp, int j)
 
 	len = 0;
 	i = 0;
+	val = NULL;
 	if (token[i + 1] == '?')
 	{
 		val = ft_itoa(data->exit_code);
-		data->idx = 2;
+		printf("ICI %s\n", val);
+		data->idx = 1;
 	}
 	else
 	{
@@ -111,12 +113,11 @@ int	var_to_value(t_data *data, char *token, char *temp, int j)
 		}
 		name = ft_substr((token + 1), 0, len);
 		val = get_val(data, name);
-		// printf(">> %s=%s=%s <<\n", token, name, val);
 	}
 	i = 0;
 	while (val[i])
 		temp[j++] = val[i++];
-	//printf("ICI >>>>>>> %s", temp);
+	printf("ICI,vnbfxj %d\n", data->exit_code);
 	free(val);
 	free(name);
 	return (j);

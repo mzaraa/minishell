@@ -90,6 +90,7 @@ struct s_data
 
 void		rl_replace_line(const char *text, int clear_undo);
 int			var_to_value(t_data *data, char *token, char *temp, int j);
+int			ft_isalpha(int c);
 
 /* utils tokens*/
 t_tokens	*ft_lstnew(char *content);

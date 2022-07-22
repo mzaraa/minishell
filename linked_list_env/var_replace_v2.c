@@ -15,16 +15,15 @@
 void	get_var_val_in_token(t_data *data, t_tokens *node)
 {
 	char	*temp;
-	char	*to_free;
 	int		j;
 	int		i;
 
 	temp = calloc(1000, sizeof(char));
-	to_free = node->token;
 	j = 0;
 	i = 0;
 	while (node->token[i])
 	{
+		printf("%c\n", node->token[i]);
 		if (state(node, i))
 		{
 			++i;
@@ -34,7 +33,7 @@ void	get_var_val_in_token(t_data *data, t_tokens *node)
 			&& check_char_for_var(node->token[i + 1]))
 		{
 				j = var_to_value(data, (node->token + i), temp, j);
-				i += data->idx + 1;
+				i += data->idx;
 		}
 		else
 		{
@@ -42,7 +41,7 @@ void	get_var_val_in_token(t_data *data, t_tokens *node)
 			++i;
 			++j;
 		}
-		//printf("temp = %s\n", temp);
+		printf("temp = %d\n", i);
 	}
 	free(node->token);
 	node->token = temp;
