@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:39:51 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/18 09:11:15 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/23 13:50:52 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,11 @@
 
 static int	check(char *n)
 {
-	if (*n == '-')
-		n++;
-	else
+	if (*n++ != '-' || *n != 'n')
 		return (0);
 	while (*n)
-	{
-		if (*n != 'n')
+		if (*n++ != 'n')
 			return (0);
-		n++;
-	}
 	return (1);
 }
 
@@ -52,24 +47,20 @@ static void	ft_echo(t_data *data, t_tree *node)
 	flag = 0;
 	if (!node)
 		return ;
-	if (node->right)
-		flag = check(node->right->token);
-	if (flag == 1 && !node->right->right)
-		printf(" ");
-	else
+	while (node->right && check(node->right->token))
 	{
-		if (flag == 1)
-			node = node->right;
-		while (node->right)
-		{
-			printf("%s", node->right->token);
-			if (node->right->right)
-				printf(" ");
-			node = node->right;
-		}
-		if (flag == 0)
-			printf("\n");
+		flag = 1;
+		node = node->right;
 	}
+	while (node->right)
+	{
+		printf("%s", node->right->token);
+		if (node->right->right)
+			printf(" ");
+		node = node->right;
+	}
+	if (flag == 0)
+		printf("\n");
 }
 
 int	is_builtin(t_data *data, t_tree *node, char	*cmd)
