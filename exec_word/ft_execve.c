@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:10:13 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/19 07:52:42 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/23 13:21:07 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	**arr_arg(t_tree *node)
 
 char	*find_path(t_data *data, int i, char *cmd)
 {
-	char	*tmp;
 	char	**path_bis;
 	char	*path;
 
@@ -71,9 +70,7 @@ char	*find_path(t_data *data, int i, char *cmd)
 	i = 0;
 	while (path_bis[i++])
 	{
-		tmp = ft_strjoin(path_bis[i], "/");
-		path = ft_strjoin(tmp, cmd);
-		free(tmp);
+		path = join_three(path_bis[i], "/", cmd);
 		if (access(path, X_OK) == 0)
 		{
 			free_all(path_bis);

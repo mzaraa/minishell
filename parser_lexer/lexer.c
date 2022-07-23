@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:52:45 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/21 19:33:39 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/23 13:12:26 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,32 +93,26 @@ int	var_to_value(t_data *data, char *token, char *temp, int j)
 	char	*val;
 	char	*name;
 	int		i;
-	int		len;
 
-	len = 0;
 	i = 0;
 	val = NULL;
 	if (token[i + 1] == '?')
 	{
 		val = ft_itoa(data->exit_code);
-		printf("ICI %s\n", val);
 		data->idx = 1;
 	}
 	else
 	{
 		while (recup_var_name(token[++i]))
-		{
-			++len;
-			data->idx = len;
-		}
-		name = ft_substr((token + 1), 0, len);
+			;
+		data->idx = i - 1;
+		name = ft_substr((token + 1), 0, i - 1);
 		val = get_val(data, name);
+		free(name);
 	}
 	i = 0;
 	while (val[i])
 		temp[j++] = val[i++];
-	printf("ICI,vnbfxj %d\n", data->exit_code);
 	free(val);
-	free(name);
 	return (j);
 }

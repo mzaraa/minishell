@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 16:59:29 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/21 18:16:57 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/23 13:04:35 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	get_var_val_in_token(t_data *data, t_tokens *node)
 	i = 0;
 	while (node->token[i])
 	{
-		printf("%c\n", node->token[i]);
 		if (state(node, i))
 		{
 			++i;
@@ -33,15 +32,10 @@ void	get_var_val_in_token(t_data *data, t_tokens *node)
 			&& check_char_for_var(node->token[i + 1]))
 		{
 				j = var_to_value(data, (node->token + i), temp, j);
-				i += data->idx;
+				i += data->idx + 1;
 		}
 		else
-		{
-			temp[j] = node->token[i];
-			++i;
-			++j;
-		}
-		printf("temp = %d\n", i);
+			temp[j++] = node->token[i++];
 	}
 	free(node->token);
 	node->token = temp;

@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 09:46:11 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/18 20:22:47 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/23 13:18:06 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ void	change_env(t_data *data, t_env **env)
 	temp = *env;
 	while (temp)
 	{
-		arr_env[i] = join_three(temp->var, "=", temp->value);
+		arr_env[i++] = join_three(temp->var, "=", temp->value);
 		temp = temp->next;
-		i++;
 	}
 	arr_env[i] = NULL;
 	if (flag)
