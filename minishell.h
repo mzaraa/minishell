@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:56:00 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/21 17:48:53 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/23 20:01:26 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ struct s_data
 void		rl_replace_line(const char *text, int clear_undo);
 int			var_to_value(t_data *data, char *token, char *temp, int j);
 int			ft_isalpha(int c);
+int			check_line(char *str);
 
 /* utils tokens*/
 t_tokens	*ft_lstnew(char *content);

@@ -6,11 +6,23 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:28:06 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/19 07:47:31 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/23 20:01:32 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
+int	check_line(char *str)
+{
+	while (*str)
+	{
+		if (*str != ' ' )
+			return (1);
+		str++;
+	}
+	return (0);
+}
 
 int	get_status(t_data *data, int status)
 {

@@ -6,7 +6,7 @@
 /*   By: mzaraa <mzaraa@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 15:53:32 by mzaraa            #+#    #+#             */
-/*   Updated: 2022/07/23 13:26:51 by mzaraa           ###   ########.fr       */
+/*   Updated: 2022/07/23 19:57:25 by mzaraa           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static char	*rl_gets(t_data *data)
 	termios(0);
 	line_read = readline ("minishell » ");
 	termios(1);
-	if (line_read && *line_read)
+	if (line_read && check_line(line_read))
 	{
 		add_history (line_read);
 		if (!valid_quote(line_read))
